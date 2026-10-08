@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob:; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests">
+<title>EduBot AI - نسخه محلی اصلاح‌شده |  | سامانه آموزشی</title>
+<style>
+.edubot-no-save-password{-webkit-text-security:disc;text-security:disc;} .login-password-masked{-webkit-text-security:disc!important;text-security:disc!important;} .login-password-masked.password-visible{-webkit-text-security:none!important;text-security:none!important;} .login-password-editor{min-height:44px;outline:none;cursor:text;white-space:pre-wrap;word-break:break-word;} .login-password-editor:empty::before{content:attr(data-placeholder);color:rgba(203,213,225,.52);pointer-events:none;} .login-password-editor:focus{outline:none;}
+
+*{box-sizing:border-box;margin:0;padding:0;font-family:Tahoma,Arial,sans-serif}
+body{min-height:100vh;background:radial-gradient(circle at 10% 10%,#1d4ed8 0,transparent 30%),radial-gradient(circle at 90% 90%,#4338ca 0,transparent 30%),#020617;color:white}
+button,input,select,textarea{font-family:inherit}button{cursor:pointer}.hidden{display:none!important}
+.login-page{min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:20px;overflow:visible}
+.login-box{width:100%;max-width:1000px;background:rgba(15,23,42,.78);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(25px);border-radius:30px;overflow:visible;box-shadow:0 30px 100px rgba(0,0,0,.5)}
+.login-header{text-align:center;padding:45px 25px 20px}.logo{width:80px;height:80px;margin:auto;display:flex;align-items:center;justify-content:center;border-radius:24px;font-size:38px;background:linear-gradient(135deg,#2563eb,#6366f1);box-shadow:0 15px 40px rgba(37,99,235,.35)}
+.login-header h1{margin-top:20px;font-size:34px}.login-header p{color:#94a3b8;margin-top:10px}
+.account-types{display:grid;grid-template-columns:1fr 1fr;gap:25px;padding:35px 50px 50px}.account{padding:45px 25px;text-align:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:25px;transition:.3s}.account:hover{transform:translateY(-7px);border-color:#3b82f6;background:rgba(255,255,255,.08)}.account-icon{font-size:60px;margin-bottom:20px}.account h2{margin-bottom:12px}.account p{color:#94a3b8;line-height:1.9;margin-bottom:25px}
+.form{display:none;max-width:600px;margin:auto;padding:20px 35px 50px}.form.active{display:block}.form h2{text-align:center;margin-bottom:8px}.form-subtitle{text-align:center;color:#94a3b8;margin-bottom:25px}.input-group{margin-bottom:17px}label{display:block;color:#cbd5e1;font-size:14px;margin-bottom:8px}
+input,select,textarea{width:100%;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:white;border-radius:13px;padding:14px;outline:none}select option{color:#000}textarea{min-height:120px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.12)}
+.btn{width:100%;padding:15px;border:0;border-radius:13px;color:white;font-size:15px;font-weight:bold;background:linear-gradient(135deg,#2563eb,#4f46e5);margin-top:5px}.btn:hover{transform:translateY(-2px)}.back{background:rgba(255,255,255,.08);margin-bottom:20px}
+.app{display:none;min-height:100vh}.topbar{height:75px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;background:rgba(2,6,23,.8);border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;z-index:20;backdrop-filter:blur(15px)}
+.brand{display:flex;align-items:center;gap:12px;font-weight:bold}.brand-logo{width:45px;height:45px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#2563eb,#6366f1)}.user-area{display:flex;align-items:center;gap:15px}.logout{border:0;padding:9px 15px;border-radius:10px;color:white;background:rgba(239,68,68,.15)}
+
+.dashboard{display:grid;grid-template-columns:240px 1fr;min-height:calc(100vh - 75px)}.sidebar{background:rgba(15,23,42,.65);border-left:1px solid rgba(255,255,255,.08);padding:25px 15px}.menu-btn{width:100%;padding:14px;text-align:right;border:0;color:#cbd5e1;background:transparent;border-radius:12px;margin-bottom:7px}.menu-btn:hover,.menu-btn.active{background:rgba(59,130,246,.15);color:white}
+.main{padding:30px;max-width:1300px;width:100%;margin:auto}.page{display:none}.page.active{display:block}.page-title{font-size:28px;margin-bottom:8px}.page-subtitle{color:#94a3b8;margin-bottom:25px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:25px}.card{padding:22px;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}.card-title{color:#94a3b8;font-size:13px;margin-bottom:12px}.card-number{font-size:28px;font-weight:bold}
+.class-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}.class-card{padding:22px;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}.class-card h3{margin-bottom:10px}.class-code{display:inline-block;padding:7px 12px;background:rgba(59,130,246,.15);color:#60a5fa;border-radius:8px;margin:10px 0;font-weight:bold;letter-spacing:1px}.small-btn{border:0;padding:10px 13px;border-radius:9px;background:#2563eb;color:white}
+.bot-layout{display:grid;grid-template-columns:1fr 330px;gap:20px}.bot-box{min-height:500px;display:flex;flex-direction:column;background:rgba(15,23,42,.7);border:1px solid rgba(255,255,255,.1);border-radius:22px;overflow:hidden}.bot-head{padding:18px 20px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,.08)}.bot-avatar{width:45px;height:45px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);font-size:22px}.bot-status{color:#4ade80;font-size:12px;margin-top:4px}.messages{flex:1;padding:20px;overflow-y:auto}.message{max-width:75%;padding:13px 15px;border-radius:15px;margin-bottom:12px;line-height:1.8}.bot-message{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.1);margin-left:auto}.user-message{background:#2563eb;margin-right:auto}.bot-input{padding:15px;display:flex;gap:10px;border-top:1px solid rgba(255,255,255,.08)}.bot-input input{flex:1}.bot-input button{width:90px;border:0;border-radius:12px;background:#2563eb;color:white}.bot-info{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:22px}.bot-info h3{margin-bottom:18px}.info-item{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.07);color:#cbd5e1}.info-item span{display:block;color:#64748b;font-size:12px;margin-bottom:5px}
+.homework{display:grid;gap:15px}.homework-card{padding:20px;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}.homework-card h3{margin-bottom:10px}.homework-meta{display:flex;flex-wrap:wrap;gap:10px;color:#94a3b8;font-size:13px;margin-top:12px}.badge{background:rgba(59,130,246,.13);color:#60a5fa;padding:6px 10px;border-radius:8px}
+@media (hover:none){.account:active{transform:scale(.985);background:linear-gradient(145deg,rgba(15,23,42,.82),rgba(127,29,29,.32));border-color:rgba(248,113,113,.55);box-shadow:0 18px 45px rgba(0,0,0,.42),0 0 28px rgba(239,68,68,.15)}}
+@media(max-width:850px){.account-types{grid-template-columns:1fr;padding:25px}.dashboard{grid-template-columns:1fr}.sidebar{display:flex;overflow-x:auto;gap:5px}.menu-btn{min-width:130px;text-align:center}.cards{grid-template-columns:1fr}.bot-layout{grid-template-columns:1fr}.main{padding:20px}}
+@media(max-width:600px){.login-page{align-items:flex-start;padding:14px 10px 40px}.login-box{margin:0 auto}.account-types{padding-bottom:35px}.form{padding-bottom:60px}.topbar{padding:0 15px}.user-area span{display:none}.form{padding:20px}.page-title{font-size:23px}}
+
+/* ===== Premium School Glass / Jelly Theme ===== */
+:root{--blue:#2563eb;--blue2:#38bdf8;--navy:#020617;--gold:#f6c453;--gold2:#ffe08a;--glass:rgba(15,23,42,.62)}
+html{min-height:100%;overflow-y:auto;overflow-x:hidden;scroll-behavior:smooth}body{min-height:100%;background:radial-gradient(circle at 12% 8%,rgba(37,99,235,.30),transparent 28%),radial-gradient(circle at 88% 18%,rgba(246,196,83,.10),transparent 24%),radial-gradient(circle at 70% 90%,rgba(14,165,233,.16),transparent 30%),#020617;overflow-x:hidden;overflow-y:auto;touch-action:pan-y;overscroll-behavior-y:auto;-webkit-overflow-scrolling:touch}
+body:before{content:"";position:fixed;inset:-20%;pointer-events:none;background:radial-gradient(circle,rgba(56,189,248,.06) 0 2px,transparent 2px);background-size:34px 34px;mask-image:linear-gradient(to bottom,black,transparent 80%);animation:driftGrid 22s linear infinite;z-index:-1}
+@keyframes driftGrid{to{transform:translate3d(34px,34px,0)}}
+.login-box,.card,.class-card,.homework-card,.bot-box,.bot-info,.account{background:linear-gradient(145deg,rgba(255,255,255,.095),rgba(255,255,255,.035));border-color:rgba(255,255,255,.13);box-shadow:0 18px 55px rgba(0,0,0,.24),inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+/* Account cards: blue/black by default, red/black glass on hover/touch */
+.account{background:linear-gradient(145deg,rgba(15,23,42,.88),rgba(37,99,235,.13));border:1px solid rgba(59,130,246,.22)}
+.login-box{box-shadow:0 30px 100px rgba(0,0,0,.55),0 0 70px rgba(37,99,235,.10),inset 0 1px 0 rgba(255,255,255,.08)}
+.logo,.brand-logo,.bot-avatar{background:linear-gradient(135deg,#0f4cdb,#2563eb 52%,#f6c453);box-shadow:0 12px 35px rgba(37,99,235,.32),0 0 25px rgba(246,196,83,.10)}
+.login-header h1{letter-spacing:-1px;text-shadow:0 0 25px rgba(56,189,248,.18)}
+.account{position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s}
+.account:before,.card:before,.class-card:before,.homework-card:before{content:"";position:absolute;inset:-80%;background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,.09) 50%,transparent 60%);transform:translateX(-40%) rotate(8deg);transition:transform .8s;pointer-events:none}
+.account:hover,.account:active{transform:translateY(-6px) scale(1.015);border-color:rgba(248,113,113,.55);background:linear-gradient(145deg,rgba(15,23,42,.82),rgba(127,29,29,.32));box-shadow:0 25px 65px rgba(0,0,0,.42),0 0 35px rgba(239,68,68,.16),inset 0 1px 0 rgba(255,255,255,.14)}
+.card:hover,.class-card:hover,.homework-card:hover{transform:translateY(-5px);border-color:rgba(56,189,248,.38);box-shadow:0 25px 65px rgba(0,0,0,.34),0 0 25px rgba(37,99,235,.12),inset 0 1px 0 rgba(255,255,255,.10)}
+.account:hover:before,.account:active:before,.card:hover:before,.class-card:hover:before,.homework-card:hover:before{transform:translateX(40%) rotate(8deg)}
+.account:after{content:"";position:absolute;inset:1px;border-radius:24px;background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,.08) 48%,transparent 72%);opacity:0;transform:translateX(-45%);transition:opacity .35s,transform .7s;pointer-events:none}.account:hover:after,.account:active:after{opacity:1;transform:translateX(45%)}
+.btn{position:relative;overflow:hidden;background:linear-gradient(110deg,#123ea8,#2563eb 48%,#f6c453);box-shadow:0 12px 28px rgba(37,99,235,.22);transition:transform .25s,box-shadow .25s,filter .25s}
+.btn:after,.small-btn:after{content:"";position:absolute;top:-80%;left:-35%;width:35%;height:260%;background:rgba(255,255,255,.28);transform:rotate(20deg);transition:left .65s;filter:blur(2px)}
+.btn:hover,.small-btn:hover{transform:translateY(-3px);filter:saturate(1.1);box-shadow:0 16px 35px rgba(37,99,235,.30),0 0 18px rgba(246,196,83,.12)}
+.btn:hover:after,.small-btn:hover:after{left:115%}
+input,select,textarea{background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025));border-color:rgba(148,163,184,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.05);transition:border-color .25s,box-shadow .25s,transform .25s}
+input:hover,select:hover,textarea:hover{border-color:rgba(56,189,248,.35)}
+input:focus,select:focus,textarea:focus{border-color:#38bdf8;box-shadow:0 0 0 3px rgba(56,189,248,.10),0 0 25px rgba(37,99,235,.12);transform:translateY(-1px)}
+/* Premium animated grade picker */
+#studentGrade{display:none}
+.grade-picker{position:relative}
+.grade-trigger{width:100%;min-height:53px;padding:14px 16px;border:1px solid rgba(148,163,184,.20);border-radius:15px;background:linear-gradient(145deg,rgba(37,99,235,.15),rgba(255,255,255,.045));color:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;position:relative;overflow:hidden;transition:.3s;box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 8px 25px rgba(0,0,0,.12)}
+.grade-trigger:before{content:"";position:absolute;inset:-60%;background:radial-gradient(circle,rgba(56,189,248,.15),transparent 55%);opacity:0;transition:.35s}
+.grade-trigger:hover,.grade-picker.open .grade-trigger{border-color:rgba(246,196,83,.55);box-shadow:0 0 0 3px rgba(246,196,83,.07),0 12px 35px rgba(0,0,0,.20),inset 0 1px 0 rgba(255,255,255,.10);transform:translateY(-1px)}
+.grade-picker.open .grade-trigger:before{opacity:1}
+.grade-arrow{font-size:12px;color:#f6c453;transition:transform .3s}.grade-picker.open .grade-arrow{transform:rotate(180deg)}
+.grade-menu{position:absolute;z-index:1000;top:calc(100% + 9px);left:0;right:0;padding:8px;display:grid;max-height:390px;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin;grid-template-columns:repeat(2,1fr);gap:7px;border:1px solid rgba(255,255,255,.13);border-radius:18px;background:rgba(3,10,27,.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 25px 70px rgba(0,0,0,.55),0 0 35px rgba(37,99,235,.12);opacity:0;visibility:hidden;transform:translateY(-8px) scale(.98);transform-origin:top;transition:.25s}
+.grade-picker.open .grade-menu{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+.grade-option{border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:11px 8px;text-align:center;color:#cbd5e1;background:rgba(255,255,255,.035);cursor:pointer;transition:.22s;position:relative;overflow:hidden}
+.grade-option:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(37,99,235,.22),rgba(56,189,248,.10));opacity:0;transition:.22s}.grade-option:hover{transform:translateY(-2px);color:#fff;border-color:rgba(56,189,248,.45);box-shadow:0 8px 22px rgba(0,0,0,.22)}.grade-option:hover:before,.grade-option.selected:before{opacity:1}.grade-option.selected{border-color:rgba(56,189,248,.55);color:#fff;box-shadow:0 0 18px rgba(56,189,248,.08)}
+.grade-option span{position:relative;z-index:1}.grade-school-icon{font-size:16px;margin-left:5px;filter:drop-shadow(0 0 7px rgba(246,196,83,.28))}
+@media(min-width:851px){.grade-menu{grid-template-columns:repeat(3,1fr);max-height:430px}}
+@media(max-width:500px){.grade-menu{grid-template-columns:1fr 1fr;max-height:330px;overflow-y:auto}.grade-option{padding:10px 5px;font-size:13px}}
+.topbar{background:rgba(2,6,23,.72);box-shadow:0 10px 40px rgba(0,0,0,.18)}
+.menu-btn{transition:.25s;position:relative;overflow:hidden}.menu-btn:hover,.menu-btn.active{background:linear-gradient(90deg,rgba(37,99,235,.20),rgba(246,196,83,.07));box-shadow:inset -3px 0 0 #f6c453,0 8px 22px rgba(0,0,0,.10)}
+.class-code,.badge{background:linear-gradient(135deg,rgba(37,99,235,.22),rgba(246,196,83,.09));border:1px solid rgba(56,189,248,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.small-btn{position:relative;overflow:hidden;background:linear-gradient(135deg,#1648ba,#2563eb);transition:.25s;box-shadow:0 8px 20px rgba(37,99,235,.22)}
+.logout{transition:.25s;border:1px solid rgba(239,68,68,.15)}.logout:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(239,68,68,.14)}
+
+/* ===== Classroom management UI ===== */
+.class-actions{display:grid;gap:14px;margin:0 0 18px}.action-card{display:flex;align-items:center;gap:16px;padding:18px 20px}.action-card>div:nth-child(2){flex:1}.action-card p,.empty-state p{color:#94a3b8;margin-top:5px;line-height:1.8}.action-icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;font-size:23px;background:linear-gradient(135deg,rgba(37,99,235,.24),rgba(56,189,248,.08));border:1px solid rgba(56,189,248,.18)}.class-form-card{margin:0 0 18px;padding:22px}.input-row{display:grid;grid-template-columns:1fr 1fr;gap:15px}.class-form-actions{display:flex;gap:10px}.class-form-actions .btn{flex:1}.class-form-actions .back{margin:5px 0}.class-top,.homework-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.class-icon,.homework-icon{font-size:28px}.class-status{font-size:12px;color:#4ade80;background:rgba(34,197,94,.09);border:1px solid rgba(74,222,128,.15);padding:5px 9px;border-radius:999px}.muted{color:#94a3b8;line-height:1.8}.student-count{margin:10px 0 12px}.class-card-actions{display:flex;gap:8px}.class-card-actions .small-btn,.class-card-actions .danger-btn{flex:1}.danger-btn{border:1px solid rgba(248,113,113,.18);padding:10px 13px;border-radius:9px;background:rgba(127,29,29,.25);color:#fca5a5;cursor:pointer;transition:.25s}.danger-btn:hover{background:rgba(185,28,28,.35);transform:translateY(-2px);box-shadow:0 10px 25px rgba(239,68,68,.12)}.empty-state{text-align:center;padding:38px 22px}.empty-state>div{font-size:42px;margin-bottom:10px}.empty-state h3{margin-bottom:4px}.homework-description{color:#cbd5e1;line-height:1.9}.homework-head .badge{margin:0}.hidden{display:none!important}@media(max-width:650px){.input-row{grid-template-columns:1fr}.action-card{align-items:flex-start;flex-wrap:wrap}.action-card .small-btn{width:100%}.class-form-actions{flex-direction:column}.class-form-actions .back{margin:0}}
+
+
+/* ===== Creator & Coding Game Info ===== */
+.creator-kicker{display:inline-flex;align-items:center;gap:8px;margin-bottom:7px;padding:6px 11px;border-radius:999px;color:#b7ffe2;background:rgba(74,222,128,.08);border:1px solid rgba(110,231,183,.2);font-size:11px;font-weight:900;letter-spacing:.6px;box-shadow:0 0 25px rgba(74,222,128,.08)}
+.creator-main-title{font-size:clamp(28px,4vw,46px)!important;font-weight:1000!important;letter-spacing:-1px;background:linear-gradient(90deg,#f0fff9 0%,#8bf3d1 34%,#67e8f9 68%,#d9fff0 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 28px rgba(110,231,183,.13);position:relative}
+.creator-badge{position:relative;overflow:hidden;background:linear-gradient(90deg,rgba(16,185,129,.15),rgba(34,211,238,.11),rgba(234,179,8,.10));border:1px solid rgba(110,231,183,.24);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 10px 35px rgba(16,185,129,.08)}
+.creator-badge:after{content:"";position:absolute;inset:-80% -30%;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.16) 50%,transparent 60%);animation:creatorShine 5.5s ease-in-out infinite;pointer-events:none}
+@keyframes creatorShine{0%,65%{transform:translateX(-55%)}100%{transform:translateX(55%)}}
+.game-code-page{position:relative;overflow:hidden;padding:26px;border-radius:28px;background:linear-gradient(145deg,rgba(3,20,32,.92),rgba(7,15,29,.96));border:1px solid rgba(103,232,249,.2);box-shadow:0 25px 70px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.08)}
+.game-code-page:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 20% 20%,rgba(34,197,94,.10),transparent 27%),radial-gradient(circle at 85% 70%,rgba(34,211,238,.10),transparent 30%);filter:blur(18px);pointer-events:none}
+.game-code-head{position:relative;display:flex;align-items:center;gap:15px;margin-bottom:20px;z-index:1}.game-code-icon{width:64px;height:64px;display:grid;place-items:center;border-radius:20px;color:#9fffe1;background:linear-gradient(145deg,rgba(16,185,129,.18),rgba(8,47,73,.72));border:1px solid rgba(103,232,249,.25);font:900 20px/1 ui-monospace,SFMono-Regular,Menlo,monospace;box-shadow:inset 0 1px 12px rgba(255,255,255,.06),0 0 30px rgba(34,211,238,.10);animation:codeIconFloat 4s ease-in-out infinite}.game-code-kicker{font:900 10px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:#6ee7b7;letter-spacing:1.8px;margin-bottom:4px}.code-live-dot{margin-right:auto;display:flex;align-items:center;gap:7px;color:#7dd3fc;font:900 10px/1 ui-monospace,SFMono-Regular,Menlo,monospace;padding:8px 10px;border-radius:999px;background:rgba(34,211,238,.06);border:1px solid rgba(34,211,238,.15)}.code-live-dot span{width:7px;height:7px;border-radius:50%;background:#6ee7b7;box-shadow:0 0 12px #6ee7b7;animation:livePulse 1.8s ease-in-out infinite}
+.code-console{position:relative;z-index:1;border-radius:22px;overflow:hidden;border:1px solid rgba(103,232,249,.16);background:#030a12;box-shadow:inset 0 0 45px rgba(34,211,238,.045),0 18px 45px rgba(0,0,0,.25)}.code-console-top{height:42px;display:flex;align-items:center;gap:7px;padding:0 14px;background:rgba(255,255,255,.035);border-bottom:1px solid rgba(255,255,255,.06);font:700 11px ui-monospace,SFMono-Regular,Menlo,monospace;color:#66808f}.code-console-top span{width:8px;height:8px;border-radius:50%;background:rgba(248,113,113,.65)}.code-console-top span:nth-child(2){background:rgba(250,204,21,.65)}.code-console-top span:nth-child(3){background:rgba(74,222,128,.65)}.code-console-top b{margin-right:6px;color:#8aa8b5;font-weight:700}.code-console-top i{margin-right:auto;color:#4ade80;font-style:normal;font-size:16px;animation:blink 1.7s steps(2,end) infinite}.code-screen{position:relative;min-height:255px;padding:18px 16px 22px;overflow:hidden;background:repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0,rgba(255,255,255,.012) 1px,transparent 1px,transparent 5px)}.code-glow-line{position:absolute;height:1px;width:65%;background:linear-gradient(90deg,transparent,rgba(110,231,183,.5),transparent);filter:blur(1px);opacity:.45}.line-a{top:38%;left:-20%;animation:codeSweep 6s linear infinite}.line-b{top:72%;left:-25%;animation:codeSweep 8s linear infinite 1.5s}.code-line{position:relative;display:flex;gap:15px;min-height:31px;align-items:center;font:600 13px/1.8 ui-monospace,SFMono-Regular,Menlo,monospace;color:#c9e7ef;direction:ltr;text-align:left;white-space:nowrap}.code-line em{width:24px;color:#31515e;font-style:normal;text-align:right}.code-line strong{color:#6ee7b7}.code-line i{color:#7dd3fc;font-style:normal}.code-line b{color:#9ca3af;font-weight:600}.code-line.indent{padding-left:25px}.active-code{margin-top:3px}.cursor{display:inline-block;width:7px;height:18px;margin-left:4px;background:#6ee7b7;vertical-align:-4px;box-shadow:0 0 10px rgba(110,231,183,.7);animation:blink .9s steps(2,end) infinite}.code-particles span{position:absolute;width:3px;height:3px;border-radius:50%;background:#6ee7b7;box-shadow:0 0 10px rgba(110,231,183,.8);opacity:.35}.code-particles span:nth-child(1){left:12%;top:20%;animation:particleFloat 5s ease-in-out infinite}.code-particles span:nth-child(2){left:72%;top:27%;animation:particleFloat 6s ease-in-out infinite .7s}.code-particles span:nth-child(3){left:85%;top:55%;animation:particleFloat 4.5s ease-in-out infinite 1s}.code-particles span:nth-child(4){left:35%;top:75%;animation:particleFloat 5.5s ease-in-out infinite 1.4s}.code-particles span:nth-child(5){left:56%;top:12%;animation:particleFloat 4s ease-in-out infinite 2s}.code-particles span:nth-child(6){left:91%;top:82%;animation:particleFloat 6.5s ease-in-out infinite 1.2s}.game-info-chips{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:15px}.game-info-chips>div{padding:14px 15px;border-radius:17px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}.game-info-chips b{display:block;color:#8eeed0;font-size:12px;margin-bottom:5px}.game-info-chips span{color:#94a9b5;font-size:12px}.menu-btn + .menu-btn{margin-top:4px}
+@keyframes codeIconFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}@keyframes livePulse{0%,100%{opacity:.45;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}@keyframes blink{0%,45%{opacity:1}46%,100%{opacity:.2}}@keyframes codeSweep{0%{transform:translateX(0);opacity:0}15%{opacity:.5}80%{opacity:.2}100%{transform:translateX(230%);opacity:0}}@keyframes particleFloat{0%,100%{transform:translate(0,0);opacity:.2}50%{transform:translate(12px,-10px);opacity:.75}}
+@media(max-width:700px){.game-code-page{padding:20px}.game-code-head{align-items:flex-start}.game-code-icon{width:56px;height:56px;font-size:17px}.code-live-dot{position:absolute;top:0;left:0}.code-screen{min-height:245px;padding:16px 10px}.code-line{font-size:11px;gap:9px}.code-line em{width:18px}.game-info-chips{grid-template-columns:1fr}.creator-main-title{font-size:31px!important}}
+@media(prefers-reduced-motion:reduce){.creator-badge:after,.game-code-icon,.code-live-dot span,.code-console-top i,.cursor,.line-a,.line-b,.code-particles span{animation:none!important}}
+
+.info-page-card{position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(30,64,175,.20),rgba(15,23,42,.88));border:1px solid rgba(96,165,250,.25);border-radius:28px;padding:30px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.info-page-card:before{content:"";position:absolute;inset:-80px auto auto -80px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,.28),transparent 70%);pointer-events:none}
+.info-hero{display:flex;align-items:center;gap:18px;margin-bottom:24px}.info-logo{width:72px;height:72px;border-radius:22px;display:grid;place-items:center;font-size:36px;background:linear-gradient(135deg,#1d4ed8,#0f172a);border:1px solid rgba(255,255,255,.14);box-shadow:0 12px 30px rgba(37,99,235,.25)}
+.info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.info-item{padding:18px;border-radius:18px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08)}.info-item h3{margin:0 0 8px;font-size:16px}.info-item p{margin:0;color:#a8b3c7;line-height:1.9;font-size:14px}.creator-badge{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:10px 14px;border-radius:999px;background:linear-gradient(90deg,rgba(37,99,235,.2),rgba(234,179,8,.16));border:1px solid rgba(255,255,255,.12);font-weight:700}
+@media(max-width:700px){.info-grid{grid-template-columns:1fr}.info-page-card{padding:22px}.info-hero{align-items:flex-start}.info-logo{width:60px;height:60px;font-size:30px}}
+\n/* ===== Secure Delete Jelly Theme v2 — soft centered ===== */
+
+/* ===== Login code reminder — elegant red calm overlay ===== */
+#loginCodeReminderModal{
+  position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;z-index:100000;
+  display:grid!important;place-items:center!important;padding:18px;box-sizing:border-box;
+  background:radial-gradient(circle at 50% 38%,rgba(248,113,113,.13),transparent 28%),rgba(2,5,14,.74);
+  backdrop-filter:blur(17px);-webkit-backdrop-filter:blur(17px);animation:loginCodeFade .45s ease-out
+}
+#loginCodeReminderModal.hidden{display:none!important}
+.login-code-reminder-card{
+  position:relative;width:min(92vw,470px);box-sizing:border-box;padding:30px 24px 22px;text-align:center;
+  border:1px solid rgba(248,113,113,.32);border-radius:30px;
+  background:linear-gradient(145deg,rgba(38,11,20,.94),rgba(10,15,27,.97));
+  box-shadow:0 30px 90px rgba(0,0,0,.55),0 0 55px rgba(239,68,68,.10),inset 0 1px 0 rgba(255,255,255,.10);
+  overflow:hidden;animation:loginCodePop .58s cubic-bezier(.16,1,.3,1)
+}
+.login-code-reminder-card::before{
+  content:"";position:absolute;inset:-45%;pointer-events:none;
+  background:conic-gradient(from 80deg,transparent 0deg,rgba(248,113,113,.17) 80deg,rgba(251,191,36,.10) 145deg,transparent 220deg,rgba(248,113,113,.12) 305deg,transparent 360deg);
+  filter:blur(28px);animation:loginCodeGlow 9s ease-in-out infinite
+}
+.login-code-reminder-icon{
+  position:relative;width:72px;height:72px;margin:0 auto 14px;display:grid;place-items:center;border-radius:24px;
+  font-size:34px;background:linear-gradient(145deg,rgba(239,68,68,.16),rgba(127,29,29,.12));
+  border:1px solid rgba(248,113,113,.30);box-shadow:inset 0 1px 14px rgba(255,255,255,.07),0 0 32px rgba(239,68,68,.12)
+}
+#loginCodeReminderTitle{
+  position:relative;margin:0 0 9px;font-size:24px;font-weight:950;letter-spacing:-.4px;
+  background:linear-gradient(90deg,#fecaca,#fb7185,#fda4af);-webkit-background-clip:text;background-clip:text;color:transparent
+}
+#loginCodeReminderText{position:relative;margin:0 auto 17px;color:#ffd7dc;font-size:14px;line-height:2;max-width:390px}
+.login-code-reminder-warning{
+  position:relative;margin:0 auto 18px;padding:13px 14px;border-radius:18px;
+  background:rgba(127,29,29,.18);border:1px solid rgba(248,113,113,.24);color:#fecaca;font-size:13px;line-height:2.15;word-spacing:.16em;padding-inline:16px!important
+}
+.login-code-reminder-warning strong{display:inline-block;margin-inline:.16em;font-weight:950;color:#fff1f2}
+.login-code-reminder-warning span{display:inline-block;margin-top:3px}
+.login-code-reminder-actions{position:relative;display:grid;grid-template-columns:1fr 1.3fr;gap:10px}
+.login-code-reminder-actions button{min-height:50px;border-radius:17px;border:1px solid rgba(255,255,255,.10);font-family:inherit;font-size:14px;font-weight:900;cursor:pointer;transition:.22s ease}
+.login-code-reminder-no{color:#d8dee7;background:rgba(255,255,255,.045)}
+.login-code-reminder-ok{color:#fff7f7;background:linear-gradient(135deg,#be123c,#ef4444);box-shadow:0 10px 28px rgba(239,68,68,.20),inset 0 1px 0 rgba(255,255,255,.20)}
+.login-code-reminder-ok{position:relative;overflow:hidden;isolation:isolate;}
+.login-code-reminder-ok::before{content:"";position:absolute;top:50%;left:-18px;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle,rgba(255,110,110,.9) 0%,rgba(255,60,60,.34) 38%,transparent 72%);filter:blur(5px);opacity:0;transform:translateY(-50%) scale(.55);transition:opacity .28s ease,transform .32s ease;z-index:-1;pointer-events:none;}
+.login-code-reminder-ok::after{content:"";position:absolute;top:0;bottom:0;left:-45%;width:24%;background:linear-gradient(90deg,transparent,rgba(255,210,210,.32),transparent);transform:skewX(-18deg);opacity:0;pointer-events:none;}
+@media (hover:hover) and (pointer:fine){.login-code-reminder-ok:hover{filter:brightness(1.08);box-shadow:0 0 0 1px rgba(255,110,110,.16),0 0 22px rgba(239,68,68,.28),0 12px 30px rgba(239,68,68,.24),inset 0 1px 0 rgba(255,255,255,.24);transform:translateY(-1px);}.login-code-reminder-ok:hover::before{opacity:1;transform:translateY(-50%) scale(1.15);}.login-code-reminder-ok:hover::after{opacity:1;animation:loginReminderRedShine 1.35s ease-out forwards;}}
+@keyframes loginReminderRedShine{0%{left:-45%;}100%{left:125%;}}
+.login-code-reminder-actions button:active{transform:scale(.97)}
+@keyframes loginCodeFade{from{opacity:0}to{opacity:1}}
+@keyframes loginCodePop{0%{opacity:0;transform:translateY(10px) scale(.95);filter:blur(2px)}60%{transform:translateY(-1px) scale(1.006);filter:blur(0)}100%{opacity:1;transform:none}}
+@keyframes loginCodeGlow{0%,100%{transform:rotate(0) scale(1)}50%{transform:rotate(8deg) scale(1.06)}}
+@media(max-width:480px){.login-code-reminder-card{padding:25px 18px 19px;border-radius:28px}.login-code-reminder-icon{width:66px;height:66px;font-size:31px}.login-code-reminder-actions button{min-height:48px;font-size:13px}}
+@media(prefers-reduced-motion:reduce){#loginCodeReminderModal,.login-code-reminder-card,.login-code-reminder-card::before{animation:none!important}}
+
+#accountSecurityModal{position:fixed!important;top:0!important;left:0!important;right:0!important;bottom:0!important;width:100vw!important;height:100vh!important;z-index:99999;display:grid!important;place-items:center!important;padding:18px;box-sizing:border-box;background:radial-gradient(circle at 50% 35%,rgba(34,211,238,.13),transparent 30%),radial-gradient(circle at 35% 65%,rgba(34,197,94,.12),transparent 32%),rgba(1,6,18,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);animation:sdFadeIn .5s cubic-bezier(.22,1,.36,1)}
+#accountSecurityModal.hidden{display:none}
+.secure-delete-card{position:relative;width:min(92vw,430px);max-height:calc(100vh - 36px);padding:30px 24px 24px;box-sizing:border-box;border:1px solid rgba(103,232,249,.28);border-radius:32px;background:linear-gradient(145deg,rgba(7,25,43,.88),rgba(2,12,27,.94));box-shadow:0 30px 90px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.13),inset 0 -18px 45px rgba(34,197,94,.035),0 0 48px rgba(34,211,238,.1);text-align:center;overflow:hidden;animation:sdSoftPop .65s cubic-bezier(.16,1,.3,1)}
+.secure-delete-card:before{content:"";position:absolute;inset:-35%;background:conic-gradient(from 180deg,transparent 0deg,rgba(34,211,238,.20) 70deg,rgba(34,197,94,.18) 145deg,transparent 225deg,rgba(56,189,248,.14) 300deg,transparent 360deg);filter:blur(28px);opacity:.75;z-index:-1;animation:sdJelly 8s ease-in-out infinite}
+.secure-delete-card:after{content:"";position:absolute;top:-100px;left:-15%;width:130%;height:170px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);transform:rotate(-5deg);filter:blur(18px);pointer-events:none;animation:sdShine 5.5s ease-in-out infinite}
+.secure-delete-icon{width:78px;height:78px;margin:0 auto 15px;display:flex;align-items:center;justify-content:center;border-radius:26px;font-size:38px;background:linear-gradient(145deg,rgba(34,211,238,.18),rgba(34,197,94,.12));border:1px solid rgba(103,232,249,.27);box-shadow:inset 0 1px 14px rgba(255,255,255,.08),0 0 32px rgba(34,211,238,.12);animation:sdBreathe 4s ease-in-out infinite}
+#secureDeleteTitle{margin:0 0 9px;font-size:25px;font-weight:900;letter-spacing:-.4px;background:linear-gradient(90deg,#8bf3ff,#6ee7b7,#d1fae5);-webkit-background-clip:text;background-clip:text;color:transparent}
+#secureDeleteText{margin:0 auto 18px;color:#b9d7df;font-size:14px;line-height:2;max-width:340px}
+.secure-delete-code{min-height:104px;margin:14px auto 18px;padding:10px 16px;display:flex;align-items:center;justify-content:center;border-radius:24px;background:linear-gradient(145deg,rgba(9,39,58,.9),rgba(3,21,37,.9));border:1px solid rgba(74,222,128,.3);box-shadow:inset 0 0 32px rgba(34,211,238,.07),inset 0 1px 0 rgba(255,255,255,.1),0 12px 36px rgba(0,0,0,.24);font-size:50px;font-weight:1000;letter-spacing:10px;color:#efffff;text-shadow:0 0 18px rgba(103,232,249,.58),0 0 38px rgba(74,222,128,.2);font-variant-numeric:tabular-nums;direction:ltr;animation:sdCodeSoft 3.8s ease-in-out infinite}
+.secure-delete-input{width:100%;height:56px;box-sizing:border-box;margin:0 0 9px;border-radius:18px;border:1px solid rgba(56,189,248,.27);outline:none;background:rgba(2,12,24,.72);color:#f0fdff;text-align:center;font-size:25px;font-weight:800;letter-spacing:7px;direction:ltr;box-shadow:inset 0 0 18px rgba(34,211,238,.04);transition:.25s ease}
+.secure-delete-input:focus{border-color:rgba(74,222,128,.68);box-shadow:0 0 0 4px rgba(74,222,128,.08),inset 0 0 20px rgba(34,211,238,.07)}
+.secure-delete-input::placeholder{color:#527083;font-size:14px;letter-spacing:1px}
+.secure-delete-error{min-height:25px;color:#fda4af;font-size:13px;font-weight:700;margin:2px 0 8px}
+.secure-delete-actions{display:grid;grid-template-columns:1fr 1.25fr;gap:11px;margin-top:4px}
+.secure-delete-actions button{min-height:50px;border-radius:17px;border:1px solid rgba(255,255,255,.1);font-family:inherit;font-size:15px;font-weight:900;cursor:pointer;transition:transform .2s ease,box-shadow .25s ease,filter .25s ease}
+.secure-delete-actions button:active{transform:scale(.97)}
+.secure-delete-no{color:#d5e5ec;background:rgba(255,255,255,.045);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.secure-delete-no:hover{background:rgba(255,255,255,.08)}
+.secure-delete-yes{color:#eafff4;background:linear-gradient(135deg,#078aa8,#16a34a);box-shadow:0 10px 28px rgba(16,185,129,.2),inset 0 1px 0 rgba(255,255,255,.22)}
+.secure-delete-yes:hover{filter:brightness(1.08);box-shadow:0 13px 34px rgba(16,185,129,.27),inset 0 1px 0 rgba(255,255,255,.25)}
+@keyframes sdFadeIn{from{opacity:0}to{opacity:1}}
+@keyframes sdSoftPop{0%{opacity:0;transform:translateY(12px) scale(.94);filter:blur(2px)}55%{transform:translateY(-2px) scale(1.008);filter:blur(0)}100%{opacity:1;transform:none}}
+@keyframes sdJelly{0%,100%{transform:rotate(0deg) scale(1)}50%{transform:rotate(10deg) scale(1.06)}}
+@keyframes sdShine{0%,65%,100%{transform:translateX(-18%) rotate(-5deg);opacity:0}35%{transform:translateX(18%) rotate(-5deg);opacity:1}}
+@keyframes sdBreathe{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-3px) scale(1.025)}}
+@keyframes sdCodeSoft{0%,100%{transform:scale(1);text-shadow:0 0 18px rgba(103,232,249,.55),0 0 38px rgba(74,222,128,.18)}50%{transform:scale(1.018);text-shadow:0 0 23px rgba(103,232,249,.72),0 0 45px rgba(74,222,128,.26)}}
+@media(max-width:480px){#accountSecurityModal{padding:14px}.secure-delete-card{padding:25px 18px 19px;border-radius:29px}.secure-delete-code{font-size:41px;letter-spacing:7px;min-height:90px}.secure-delete-icon{width:68px;height:68px;font-size:32px}.secure-delete-actions button{min-height:48px;font-size:14px}}
+@media(prefers-reduced-motion:reduce){#accountSecurityModal,.secure-delete-card,.secure-delete-icon,.secure-delete-code,.secure-delete-card:before,.secure-delete-card:after{animation:none}}
+</style>
+
+<style>
+.account-action-delete{background:linear-gradient(135deg,rgba(127,29,29,.9),rgba(0,0,0,.8)) !important;border-color:rgba(248,113,113,.35)!important}
+.grade-option,.grade-btn,.grade-item{transition:transform .22s,filter .22s,box-shadow .22s}.grade-option:hover,.grade-btn:hover,.grade-item:hover{transform:translateY(-4px) scale(1.03);filter:brightness(1.12);box-shadow:0 12px 30px rgba(37,99,235,.2)}
+.jelly-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);animation:jellyIn .28s ease}
+.jelly-modal{width:min(460px,100%);padding:28px;border:1px solid rgba(248,113,113,.28);border-radius:30px;background:linear-gradient(145deg,rgba(18,18,22,.96),rgba(0,0,0,.92));box-shadow:0 25px 90px rgba(0,0,0,.7),0 0 45px rgba(220,38,38,.12);text-align:center;animation:jellyPop .42s cubic-bezier(.2,1.4,.4,1)}
+.jelly-icon{font-size:48px;margin-bottom:8px;filter:drop-shadow(0 0 16px rgba(248,113,113,.35))}
+.jelly-modal h2{margin:0 0 10px}.jelly-modal p{color:#cbd5e1;line-height:2;margin:0 0 20px}.jelly-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.jelly-btn{border:0;border-radius:16px;padding:12px 18px;color:#fff;cursor:pointer;font-family:inherit;font-weight:800;transition:.2s;box-shadow:0 8px 24px rgba(0,0,0,.25)}.jelly-btn:hover{transform:translateY(-2px) scale(1.02)}.jelly-danger{background:linear-gradient(135deg,#dc2626,#450a0a)}.jelly-safe{background:linear-gradient(135deg,#334155,#020617)}
+.security-code{direction:ltr;letter-spacing:5px;font-size:24px;font-weight:900;padding:16px;margin:14px 0;border-radius:18px;background:#050505;border:1px dashed rgba(248,113,113,.45);user-select:all;color:#fca5a5}.copy-code{background:linear-gradient(135deg,#7f1d1d,#111827)}
+.login-note{margin:12px 0 18px;padding:14px;border-radius:18px;background:rgba(239,68,68,.08);border:1px solid rgba(248,113,113,.2);color:#fecaca;line-height:1.9}
+@keyframes jellyPop{0%{transform:scale(.7) rotate(-2deg);opacity:0}70%{transform:scale(1.04) rotate(.5deg)}100%{transform:scale(1) rotate(0);opacity:1}}@keyframes jellyIn{from{opacity:0}to{opacity:1}}
+@media(max-width:650px){.jelly-actions{flex-direction:column}.jelly-btn{width:100%}.account-action-delete{font-size:11px}}
+</style>
+<style>
+.user-area{flex-wrap:wrap}
+.account-action-delete{border:1px solid rgba(248,113,113,.35);padding:9px 15px;border-radius:12px;color:#fff;background:linear-gradient(135deg,rgba(127,29,29,.72),rgba(0,0,0,.72));transition:.25s}
+.account-action-delete:hover{transform:translateY(-2px);box-shadow:0 0 25px rgba(239,68,68,.18)}
+.return-login-box{max-width:560px;margin:10px auto 30px;padding:30px;text-align:center;border-radius:30px;background:linear-gradient(145deg,rgba(8,12,20,.92),rgba(30,41,59,.62));border:1px solid rgba(56,189,248,.24);box-shadow:0 25px 80px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(24px);animation:jellyPop .45s cubic-bezier(.2,1.4,.4,1)}
+.return-icon{font-size:50px;margin-bottom:8px;filter:drop-shadow(0 0 18px rgba(56,189,248,.25))}
+.return-login-box h2{margin-bottom:10px}.return-login-box p{color:#cbd5e1;line-height:1.9;margin-bottom:15px}
+.remember-note{padding:13px 15px;margin:0 0 18px;border-radius:15px;color:#ffe08a;background:rgba(127,29,29,.18);border:1px solid rgba(246,196,83,.18);line-height:1.9;font-size:13px}
+.return-error{min-height:24px;margin-top:12px;color:#fca5a5}
+.jelly-overlay{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);animation:jellyIn .25s ease}
+.jelly-modal{width:min(470px,100%);padding:28px;border:1px solid rgba(248,113,113,.28);border-radius:30px;background:linear-gradient(145deg,rgba(18,18,22,.97),rgba(0,0,0,.94));box-shadow:0 30px 100px rgba(0,0,0,.72),0 0 50px rgba(220,38,38,.13);text-align:center;animation:jellyPop .42s cubic-bezier(.2,1.4,.4,1)}
+.jelly-icon{font-size:48px;margin-bottom:8px}.jelly-modal h2{margin-bottom:10px}.jelly-modal p{color:#cbd5e1;line-height:2;margin-bottom:20px}
+.jelly-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.jelly-btn{min-width:145px;border:0;border-radius:16px;padding:12px 18px;color:#fff;font-family:inherit;font-weight:800;cursor:pointer;transition:.2s}.jelly-btn:hover{transform:translateY(-3px) scale(1.02)}
+.jelly-danger{background:linear-gradient(135deg,#dc2626,#450a0a);box-shadow:0 10px 30px rgba(220,38,38,.18)}.jelly-safe{background:linear-gradient(135deg,#334155,#020617)}
+.security-code{direction:ltr;letter-spacing:5px;font-size:24px;font-weight:900;padding:15px 18px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(248,113,113,.25);margin:15px 0;color:#fff;user-select:all}
+.copy-code{background:linear-gradient(135deg,#2563eb,#0f172a)}
+@keyframes jellyPop{0%{opacity:0;transform:translateY(20px) scale(.75)}70%{transform:translateY(-5px) scale(1.03)}100%{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes jellyIn{from{opacity:0}to{opacity:1}}
+@media(max-width:700px){.user-area{gap:7px}.account-action-delete,.logout{padding:8px 10px;font-size:12px}.jelly-modal{padding:22px}}
+</style>
+<style>
+.previous-account-entry{max-width:560px;margin:0 auto 18px;text-align:center}
+.previous-account-btn{width:100%;padding:14px 20px;border-radius:18px;border:1px solid rgba(96,165,250,.3);color:#fff;font:inherit;font-weight:900;cursor:pointer;background:linear-gradient(135deg,rgba(30,64,175,.72),rgba(2,6,23,.9));box-shadow:0 12px 35px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.08);transition:.3s;position:relative;overflow:hidden}
+.previous-account-btn:before{content:"";position:absolute;inset:-80%;background:linear-gradient(110deg,transparent 42%,rgba(255,255,255,.14) 50%,transparent 58%);transform:translateX(-60%);transition:.7s}
+.previous-account-btn:hover{transform:translateY(-3px) scale(1.01);box-shadow:0 18px 45px rgba(37,99,235,.2)}
+.previous-account-btn:hover:before{transform:translateX(60%)}
+</style>
+
+<style>
+#localSecurityNotice{position:fixed;inset:0;z-index:5000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(2,6,23,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+#localSecurityNotice.hidden{display:none!important}
+.local-notice-card{width:min(560px,100%);padding:30px 26px;border-radius:28px;text-align:center;background:linear-gradient(145deg,rgba(15,23,42,.96),rgba(30,64,175,.28));border:1px solid rgba(96,165,250,.35);box-shadow:0 30px 100px rgba(0,0,0,.55),0 0 55px rgba(37,99,235,.18);animation:noticeIn .55s cubic-bezier(.2,.8,.2,1)}
+.local-notice-icon{font-size:54px;animation:noticeFloat 2.4s ease-in-out infinite}.local-notice-card h2{margin:12px 0 10px;font-size:25px}.local-notice-card p{color:#cbd5e1;line-height:2;margin:8px 0}.local-notice-card .notice-important{color:#fde68a;font-weight:800}.local-notice-card .notice-small{font-size:13px;color:#94a3b8}.local-notice-card button{margin-top:16px}
+@keyframes noticeIn{from{opacity:0;transform:translateY(25px) scale(.96)}to{opacity:1;transform:none}}@keyframes noticeFloat{50%{transform:translateY(-7px) rotate(-2deg)}}
+.return-login-box{max-width:600px;margin:0 auto 20px;padding:28px 25px;border:1px solid rgba(96,165,250,.18);border-radius:24px;background:rgba(255,255,255,.045);text-align:center}.return-login-box .return-icon{font-size:42px;margin-bottom:8px}.return-login-box h2{margin-bottom:8px}.return-login-box p{color:#94a3b8;line-height:1.9;margin-bottom:15px}.remember-note{padding:11px 13px;border-radius:12px;background:rgba(246,196,83,.08);border:1px solid rgba(246,196,83,.15);color:#fde68a;font-size:12px;line-height:1.8;margin-bottom:18px}.return-error{min-height:24px;color:#fca5a5;margin-top:10px;font-size:13px}
+</style>
+<style id="secure-delete-center-fix">
+/* Final center lock: the security dialog is centered to the actual viewport, not to any layout container. */
+#accountSecurityModal{
+  position:fixed!important;
+  inset:0!important;
+  width:100vw!important;
+  height:100vh!important;
+  display:block!important;
+  padding:0!important;
+  margin:0!important;
+  z-index:999999!important;
+  box-sizing:border-box!important;
+}
+#accountSecurityModal.hidden{display:none!important}
+#accountSecurityModal > .secure-delete-card{
+  position:fixed!important;
+  left:50%!important;
+  top:50%!important;
+  right:auto!important;
+  bottom:auto!important;
+  margin:0!important;
+  transform:translate(-50%,-50%)!important;
+  transform-origin:center center!important;
+  animation:sdCenterIn .65s cubic-bezier(.16,1,.3,1)!important;
+}
+@keyframes sdCenterIn{
+  0%{opacity:0;transform:translate(-50%,-47%) scale(.94);filter:blur(2px)}
+  55%{opacity:1;transform:translate(-50%,-51%) scale(1.008);filter:blur(0)}
+  100%{opacity:1;transform:translate(-50%,-50%) scale(1);filter:blur(0)}
+}
+@media(max-width:480px){
+  #accountSecurityModal{padding:0!important}
+  #accountSecurityModal > .secure-delete-card{left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;width:calc(100vw - 28px)!important;max-width:430px!important}
+}
+@media(prefers-reduced-motion:reduce){#accountSecurityModal > .secure-delete-card{animation:none!important}}
+</style>
+
+<style id="secure-delete-flowing-lines">
+/* Full-screen calm pastel-green flowing light field */
+#accountSecurityModal{
+  overflow:hidden!important;
+  isolation:isolate!important;
+  background:
+    radial-gradient(circle at 50% 45%,rgba(74,222,128,.055),transparent 32%),
+    radial-gradient(circle at 18% 72%,rgba(45,212,191,.045),transparent 30%),
+    radial-gradient(circle at 82% 24%,rgba(134,239,172,.04),transparent 28%),
+    rgba(1,6,18,.76)!important;
+  backdrop-filter:blur(18px)!important;
+  -webkit-backdrop-filter:blur(18px)!important;
+}
+#accountSecurityModal::before,
+#accountSecurityModal::after{
+  content:"";
+  position:absolute;
+  inset:-35%;
+  pointer-events:none;
+  z-index:-1;
+  opacity:.72;
+  transform-origin:center;
+}
+/* Soft diagonal ribbons */
+#accountSecurityModal::before{
+  background:
+    repeating-linear-gradient(
+      112deg,
+      transparent 0px,
+      transparent 105px,
+      rgba(134,239,172,.00) 105px,
+      rgba(134,239,172,.00) 122px,
+      rgba(134,239,172,.105) 126px,
+      rgba(187,247,208,.16) 130px,
+      rgba(134,239,172,.055) 136px,
+      rgba(134,239,172,.00) 146px,
+      rgba(134,239,172,.00) 255px
+    );
+  filter:blur(10px);
+  animation:sdPastelFlow 18s linear infinite;
+}
+/* A second, slower layer creates depth without harsh motion */
+#accountSecurityModal::after{
+  background:
+    repeating-linear-gradient(
+      72deg,
+      transparent 0px,
+      transparent 165px,
+      rgba(110,231,183,.00) 165px,
+      rgba(110,231,183,.00) 184px,
+      rgba(110,231,183,.065) 188px,
+      rgba(187,247,208,.105) 193px,
+      rgba(110,231,183,.035) 200px,
+      rgba(110,231,183,.00) 210px,
+      rgba(110,231,183,.00) 330px
+    );
+  filter:blur(15px);
+  animation:sdPastelFlowReverse 26s linear infinite;
+}
+/* A gentle full-screen glow passes behind the dialog */
+#accountSecurityModal > .secure-delete-card{
+  box-shadow:
+    0 30px 90px rgba(0,0,0,.5),
+    inset 0 1px 0 rgba(255,255,255,.13),
+    inset 0 -18px 45px rgba(34,197,94,.035),
+    0 0 48px rgba(134,239,172,.07)!important;
+}
+#accountSecurityModal > .secure-delete-card::before{
+  background:radial-gradient(circle at 50% 0%,rgba(187,247,208,.10),transparent 55%)!important;
+  filter:blur(22px)!important;
+  animation:sdCardBreath 6s ease-in-out infinite!important;
+}
+#accountSecurityModal > .secure-delete-card::after{
+  background:linear-gradient(90deg,transparent,rgba(187,247,208,.075),transparent)!important;
+  animation:sdShine 7s ease-in-out infinite!important;
+}
+@keyframes sdPastelFlow{
+  0%{transform:translate3d(-7%, -3%,0) rotate(0deg)}
+  50%{transform:translate3d(7%, 3%,0) rotate(1deg)}
+  100%{transform:translate3d(-7%, -3%,0) rotate(0deg)}
+}
+@keyframes sdPastelFlowReverse{
+  0%{transform:translate3d(7%, 4%,0) rotate(0deg)}
+  50%{transform:translate3d(-7%, -4%,0) rotate(-1deg)}
+  100%{transform:translate3d(7%, 4%,0) rotate(0deg)}
+}
+@keyframes sdCardBreath{
+  0%,100%{opacity:.55;transform:scale(.96)}
+  50%{opacity:.9;transform:scale(1.04)}
+}
+@media(prefers-reduced-motion:reduce){
+  #accountSecurityModal::before,
+  #accountSecurityModal::after,
+  #accountSecurityModal > .secure-delete-card::before,
+  #accountSecurityModal > .secure-delete-card::after{animation:none!important}
+}
+</style>
+
+<style id="youth-light-dance-theme">
+/* ===== Tiny red light-dance across every screen ===== */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  opacity:.38;
+  background:
+    radial-gradient(circle at 8% 18%,rgba(248,113,113,.82) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 21% 72%,rgba(239,68,68,.68) 0 1px,transparent 1.7px),
+    radial-gradient(circle at 36% 34%,rgba(248,113,113,.72) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 52% 84%,rgba(239,68,68,.62) 0 1px,transparent 1.7px),
+    radial-gradient(circle at 67% 25%,rgba(248,113,113,.76) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 81% 66%,rgba(239,68,68,.68) 0 1px,transparent 1.7px),
+    radial-gradient(circle at 93% 38%,rgba(248,113,113,.72) 0 1px,transparent 1.8px);
+  background-size:100% 100%;
+  filter:blur(.15px) drop-shadow(0 0 4px rgba(248,113,113,.25));
+  animation:redSparkDrift 9s ease-in-out infinite alternate;
+}
+@keyframes redSparkDrift{
+  0%{transform:translate3d(-2px,1px,0) scale(1);opacity:.24}
+  35%{transform:translate3d(2px,-3px,0) scale(1.015);opacity:.40}
+  70%{transform:translate3d(-1px,3px,0) scale(.99);opacity:.30}
+  100%{transform:translate3d(3px,0,0) scale(1.01);opacity:.38}
+}
+/* extra tiny red shimmer, kept sparse and calm */
+#app::after,#loginPage::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:2;
+  pointer-events:none;
+  opacity:.16;
+  background:
+    radial-gradient(circle at 14% 47%,rgba(255,120,120,.8) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 44% 12%,rgba(255,120,120,.7) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 73% 91%,rgba(255,120,120,.75) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 88% 57%,rgba(255,120,120,.65) 0 1px,transparent 1.8px);
+  animation:redSparkTwinkle 6.5s ease-in-out infinite;
+}
+@keyframes redSparkTwinkle{
+  0%,100%{opacity:.10;transform:translateY(0)}
+  50%{opacity:.25;transform:translateY(-2px)}
+}
+/* ===== Blue light flowing through the gaps of the grade picker ===== */
+.grade-menu{isolation:isolate}
+.grade-menu::before{
+  content:"";
+  position:absolute;
+  inset:-35%;
+  z-index:0;
+  pointer-events:none;
+  background:
+    repeating-linear-gradient(112deg,
+      transparent 0 42px,
+      rgba(56,189,248,.00) 42px 50px,
+      rgba(103,232,249,.26) 51px 54px,
+      rgba(56,189,248,.00) 55px 88px),
+    radial-gradient(circle at 18% 30%,rgba(56,189,248,.30) 0 2px,transparent 3px),
+    radial-gradient(circle at 76% 72%,rgba(125,211,252,.24) 0 2px,transparent 3px);
+  filter:blur(5px);
+  opacity:.72;
+  transform:translate3d(-18%,0,0) rotate(-2deg);
+  animation:blueGapFlow 7.5s ease-in-out infinite;
+}
+.grade-menu::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 30% 18%,rgba(56,189,248,.22) 0 1px,transparent 2px),
+    radial-gradient(circle at 64% 48%,rgba(125,211,252,.20) 0 1px,transparent 2px),
+    radial-gradient(circle at 42% 86%,rgba(56,189,248,.20) 0 1px,transparent 2px);
+  animation:blueGapTwinkle 4.8s ease-in-out infinite alternate;
+}
+.grade-option{z-index:1}
+@keyframes blueGapFlow{
+  0%{transform:translate3d(-28%,2%,0) rotate(-2deg)}
+  45%{transform:translate3d(8%,-2%,0) rotate(1deg)}
+  100%{transform:translate3d(30%,2%,0) rotate(-1deg)}
+}
+@keyframes blueGapTwinkle{
+  0%{opacity:.22;transform:translate3d(-2px,0,0)}
+  50%{opacity:.55;transform:translate3d(2px,-2px,0)}
+  100%{opacity:.26;transform:translate3d(0,2px,0)}
+}
+@media(prefers-reduced-motion:reduce){
+  body::after,#app::after,#loginPage::after,.grade-menu::before,.grade-menu::after{animation:none!important}
+}
+</style>
+<style id="login-code-reminder-soft-small">
+/* ===== Small soft red warning — appears only when the registration access-code field is chosen ===== */
+.registration-access-code{
+  -webkit-text-security:disc!important;
+  text-security:disc!important;
+  caret-color:#fca5a5;
+}
+.registration-password-wrap{position:relative;width:100%;}
+.registration-password-wrap input{padding-left:54px!important;}
+.registration-password-eye{position:absolute;left:8px;top:50%;transform:translateY(-50%);width:40px;height:40px;border:0;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.07);color:#cbd5e1;cursor:pointer;font-size:19px;line-height:1;transition:background .2s ease,color .2s ease,box-shadow .2s ease,transform .2s ease;z-index:3;}
+.registration-password-eye:hover{background:rgba(34,197,94,.14);color:#86efac;box-shadow:0 0 18px rgba(34,197,94,.12);}
+.registration-password-eye:active{transform:translateY(-50%) scale(.94);}
+.registration-password-eye:focus-visible{outline:2px solid #60a5fa;outline-offset:2px;}
+.login-password-eye{position:absolute;left:8px;top:50%;transform:translateY(-50%);width:40px;height:40px;border:0;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.07);color:#cbd5e1;cursor:pointer;font-size:19px;line-height:1;transition:background .2s ease,color .2s ease,box-shadow .2s ease,transform .2s ease;z-index:3;}
+.login-password-eye:hover{background:rgba(34,197,94,.14);color:#86efac;box-shadow:0 0 18px rgba(34,197,94,.12);}
+.login-password-eye:active{transform:translateY(-50%) scale(.94);}
+.login-password-eye:focus-visible{outline:2px solid #60a5fa;outline-offset:2px;}
+.registration-access-code.password-visible{-webkit-text-security:none!important;text-security:none!important;}
+
+#loginCodeReminderModal{
+  background:rgba(2,5,14,.38)!important;
+  backdrop-filter:blur(7px)!important;
+  -webkit-backdrop-filter:blur(7px)!important;
+  padding:14px!important;
+}
+#loginCodeReminderModal .login-code-reminder-card{
+  width:min(88vw,370px)!important;
+  max-width:370px!important;
+  padding:22px 18px 17px!important;
+  border-radius:24px!important;
+  border:1px solid rgba(248,113,113,.34)!important;
+  background:linear-gradient(145deg,rgba(35,10,19,.97),rgba(9,15,27,.98))!important;
+  box-shadow:0 22px 55px rgba(0,0,0,.48),0 0 32px rgba(239,68,68,.11),inset 0 1px 0 rgba(255,255,255,.09)!important;
+  animation:loginCodeSoftPop .46s cubic-bezier(.22,1,.36,1)!important;
+}
+#loginCodeReminderModal .login-code-reminder-icon{
+  width:52px!important;height:52px!important;margin:0 auto 10px!important;border-radius:18px!important;font-size:25px!important;
+  background:linear-gradient(145deg,rgba(248,113,113,.16),rgba(239,68,68,.05))!important;
+  border:1px solid rgba(248,113,113,.25)!important;
+  box-shadow:inset 0 1px 10px rgba(255,255,255,.06),0 0 22px rgba(239,68,68,.08)!important;
+}
+#loginCodeReminderModal #loginCodeReminderTitle{
+  font-size:19px!important;line-height:1.65!important;margin-bottom:6px!important;color:#fecaca!important;
+  text-shadow:0 0 14px rgba(248,113,113,.18);
+}
+#loginCodeReminderModal #loginCodeReminderText{
+  font-size:12.5px!important;line-height:1.9!important;color:#cbd5e1!important;margin-bottom:10px!important;
+}
+#loginCodeReminderModal .login-code-reminder-warning{
+  margin:9px 0 12px!important;padding:10px 11px!important;border-radius:15px!important;
+  font-size:11.5px!important;line-height:1.9!important;color:#fecaca!important;
+  background:rgba(127,29,29,.18)!important;border:1px solid rgba(248,113,113,.18)!important;
+}
+#loginCodeReminderModal .login-code-reminder-actions{gap:8px!important;margin-top:8px!important;}
+#loginCodeReminderModal .login-code-reminder-actions button{
+  min-height:42px!important;border-radius:14px!important;font-size:12.5px!important;
+}
+@keyframes loginCodeSoftPop{
+  0%{opacity:0;transform:translateY(7px) scale(.96);filter:blur(1px)}
+  65%{opacity:1;transform:translateY(-1px) scale(1.004);filter:blur(0)}
+  100%{opacity:1;transform:none}
+}
+@media(prefers-reduced-motion:reduce){#loginCodeReminderModal .login-code-reminder-card{animation:none!important}}
+</style>
+
+<style id="login-code-reminder-center-fix">
+#loginCodeReminderModal{position:fixed!important;inset:0!important;top:0!important;right:0!important;bottom:0!important;left:0!important;width:100vw!important;height:100dvh!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:16px!important;transform:none!important;margin:0!important;z-index:2147483000!important;}
+#loginCodeReminderModal.hidden{display:none!important;}
+#loginCodeReminderModal .login-code-reminder-card{position:relative!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;margin:0 auto!important;transform:none!important;}
+@supports not (height:100dvh){#loginCodeReminderModal{height:100vh!important;}}
+</style>
+</head>
+<body>
+
+<div id="loginCodeReminderModal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="loginCodeReminderTitle">
+  <div class="login-code-reminder-card">
+    <div class="login-code-reminder-icon">🔐</div>
+    <h2 id="loginCodeReminderTitle">یک نکته خیلی مهم قبل از ساخت رمز ورود</h2>
+    <p id="loginCodeReminderText">برای ورود دوباره به همین حساب در همین دستگاه، به این کد نیاز دارید.</p>
+    <div class="login-code-reminder-warning">⚠️ لطفاً رمز ورودتان را <strong>کپی کنید</strong> و در یک جای امن ذخیره کنید.<br><span>اگر آن را فراموش کنید، ممکن است ورود دوباره به حساب ذخیره‌شده روی همین دستگاه امکان‌پذیر نباشد.</span></div>
+    <div class="login-code-reminder-actions">
+      <button type="button" class="login-code-reminder-no" id="loginCodeReminderCancel">بعداً</button>
+      <button type="button" class="login-code-reminder-ok" id="loginCodeReminderContinue">متوجه شدم، ادامه می‌دهم ✨</button>
+    </div>
+  </div>
+</div>
+
+<div id="accountSecurityModal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="secureDeleteTitle">
+  <div class="secure-delete-card">
+    <div class="secure-delete-icon">🛡️</div>
+    <h2 id="secureDeleteTitle">کد امنیتی حذف حساب</h2>
+    <p id="secureDeleteText">برای ادامه، کد امنیتی زیر را دقیقاً وارد کنید.</p>
+    <div id="secureDeleteCode" class="secure-delete-code"></div>
+    <input id="secureDeleteInput" class="secure-delete-input" type="text" inputmode="numeric" maxlength="6"
+      autocomplete="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-1p-ignore="true"
+      placeholder="کد ۶ رقمی">
+    <div id="secureDeleteError" class="secure-delete-error" aria-live="polite"></div>
+    <div class="secure-delete-actions">
+      <button type="button" class="secure-delete-no" id="secureDeleteCancel">انصراف</button>
+      <button type="button" class="secure-delete-yes" id="secureDeleteCheck">تأیید کد</button>
+    </div>
+  </div>
+</div>
+<div id="localSecurityNotice" role="dialog" aria-modal="true" aria-labelledby="localNoticeTitle">
+  <div class="local-notice-card">
+    <div class="local-notice-icon">📱🔐</div>
+    <h2 id="localNoticeTitle">یک نکته مهم درباره حساب شما</h2>
+    <p>این نسخه از EduBot بدون سرور و بدون VPS کار می‌کند و اطلاعات حساب را در <strong>همین دستگاه و همین مرورگر</strong> نگهداری می‌کند.</p>
+    <p class="notice-important">رمز ورود فقط روی همین دستگاه و همین مرورگر قابل استفاده است.</p>
+    <p class="notice-small">اگر اطلاعات مرورگر را پاک کنید یا سایت را با مرورگر دیگری باز کنید، اطلاعات این حساب در دسترس آن مرورگر نخواهد بود.</p>
+    <button type="button" class="btn" onclick="closeLocalSecurityNotice()">متوجه شدم ✨</button>
+  </div>
+</div>
+
+<div class="login-page" id="loginPage"><div class="login-box">
+<div class="login-header"><div class="logo">🎓</div><h1>EduBot</h1><p>سامانه هوشمند مدیریت کلاس و تکالیف</p></div>
+<div id="previousAccountBox" class="return-login-box hidden">
+  <div class="return-icon">🔐</div>
+  <h2>ورود به حساب قبلی</h2>
+  <p>شناسه حساب و رمز ورود را وارد کنید.</p>
+  <div class="remember-note">📱 حساب‌ها فقط روی همین دستگاه و همین مرورگر ذخیره شده‌اند.</div>
+  <div class="input-group"><label>کد ملی دانش‌آموز / ایمیل معلم</label><input id="previousAccountIdentifier" name="edubot-account-id" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-1p-ignore="true" placeholder="کد ملی یا ایمیل"></div>
+  <div class="input-group"><label>رمز ورود</label><div class="registration-password-wrap"><div id="previousAccountPassword" class="login-password-masked login-password-editor" contenteditable="true" role="textbox" aria-label="رمز ورود" data-placeholder="رمز ورود" spellcheck="false" autocapitalize="off" data-1p-ignore="true" data-lpignore="true"></div><button type="button" class="login-password-eye" data-password-target="previousAccountPassword" aria-label="نمایش رمز ورود" aria-pressed="false" title="نمایش رمز ورود">👁️</button></div></div>
+  <button class="btn" type="button" onclick="loginByPasswordOnly()">✨ ورود به حساب</button>
+  <button class="btn back" type="button" onclick="backToAccountChoices()">بازگشت</button>
+  <div id="previousAccountError" class="return-error"></div>
+</div>
+<div id="returnLoginBox" class="return-login-box hidden">
+  <div class="return-icon">🔐</div>
+  <h2>ورود مجدد به EduBot</h2>
+  <p>برای ورود، شناسه حساب و رمز ورودتان را وارد کنید.</p>
+  <div class="remember-note">⚠️ این رمز فقط برای حساب ذخیره‌شده روی همین دستگاه و همین مرورگر است.</div>
+  <div class="input-group"><label>کد ملی دانش‌آموز / ایمیل معلم</label><input id="returnIdentifier" name="edubot-return-id" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-1p-ignore="true" placeholder="کد ملی یا ایمیل"></div>
+  <div class="input-group"><label>رمز ورود</label><div class="registration-password-wrap"><div id="returnPassword" class="login-password-masked login-password-editor" contenteditable="true" role="textbox" aria-label="رمز ورود" data-placeholder="رمز ورود خود را وارد کنید" spellcheck="false" autocapitalize="off" data-1p-ignore="true" data-lpignore="true"></div><button type="button" class="login-password-eye" data-password-target="returnPassword" aria-label="نمایش رمز ورود" aria-pressed="false" title="نمایش رمز ورود">👁️</button></div></div>
+  <button class="btn" type="button" onclick="loginExistingUser()">✨ ورود به حساب</button>
+  <button class="btn back" type="button" onclick="showRegisterChoices()">ساخت حساب جدید</button>
+  <div id="returnLoginError" class="return-error"></div>
+</div>
+<div class="previous-account-entry">
+  <button type="button" class="previous-account-btn" onclick="showPreviousAccountLogin()">
+    🔐 ورود به حساب قبلی
+  </button>
+</div>
+<div class="account-types" id="accountTypes">
+<div class="account"><div class="account-icon">👨‍🏫</div><h2>معلم</h2><p>ساخت کلاس، مدیریت دانش‌آموزان و ارسال تکالیف با ربات هوشمند</p><button class="btn" onclick="openRegister('teacher')">ثبت‌نام معلم</button></div>
+<div class="account"><div class="account-icon">👨‍🎓</div><h2>دانش‌آموز</h2><p>عضویت در کلاس و دریافت خودکار تکالیف از ربات</p><button class="btn" onclick="openRegister('student')">ثبت‌نام دانش‌آموز</button></div>
+</div>
+<div class="form" id="teacherRegister"><button class="btn back" onclick="backLogin()">← بازگشت</button><h2>ثبت‌نام معلم 👨‍🏫</h2><p class="form-subtitle">اطلاعات حساب معلم را وارد کنید</p><form onsubmit="registerTeacher(event)">
+<div class="input-group"><label>نام و نام خانوادگی</label><input id="teacherName" required></div>
+<div class="input-group"><label>شماره موبایل</label><input id="teacherPhone" type="tel" placeholder="09123456789" required></div>
+<div class="input-group"><label>ایمیل</label><input id="teacherEmail" type="email" required></div>
+<div class="input-group"><label>رمز عبور <span style="color:#fca5a5;font-size:11px">(این رمز ورود را در یک جای امن ذخیره کنید؛ برای ورود مجدد و اطلاعات ذخیره‌شده به آن نیاز دارید)</span></label><div class="registration-password-wrap"><input id="teacherPassword" name="edubot-access-code" type="text" class="edubot-no-save-password registration-access-code" autocomplete="off" autocapitalize="off" data-lpignore="true" data-1p-ignore="true" spellcheck="false" inputmode="text" minlength="6" required readonly><button type="button" class="registration-password-eye" data-password-target="teacherPassword" aria-label="نمایش رمز عبور" aria-pressed="false" title="نمایش رمز عبور">👁️</button></div></div>
+<button class="btn">ایجاد حساب معلم</button></form></div>
+<div class="form" id="studentRegister"><button class="btn back" onclick="backLogin()">← بازگشت</button><h2>ثبت‌نام دانش‌آموز 👨‍🎓</h2><p class="form-subtitle">اطلاعات دانش‌آموز را وارد کنید</p><form id="studentRegistrationForm" autocomplete="off" novalidate onsubmit="return false;">
+<div class="input-group"><label>نام و نام خانوادگی</label><input id="studentName" required></div>
+<div class="input-group"><label>کد ملی</label><input id="studentCode" maxlength="10" required></div>
+<div class="input-group"><label>شماره موبایل</label><input id="studentPhone" type="tel" required></div>
+<div class="input-group"><label>پایه تحصیلی</label><select id="studentGrade" required><option value="">انتخاب پایه</option><option>اول ابتدایی</option><option>دوم ابتدایی</option><option>سوم ابتدایی</option><option>چهارم ابتدایی</option><option>پنجم ابتدایی</option><option>ششم ابتدایی</option><option>هفتم</option><option>هشتم</option><option>نهم</option><option>دهم</option><option>یازدهم</option><option>دوازدهم</option></select></div>
+<div class="input-group"><label>رمز ورود <span style="color:#fca5a5;font-size:11px">(این رمز فقط روی همین دستگاه و مرورگر استفاده می‌شود؛ آن را در یک جای امن ذخیره کنید)</span></label><div class="registration-password-wrap"><input id="studentPassword" name="edubot-access-code-student" type="text" class="edubot-no-save-password registration-access-code" autocomplete="off" autocapitalize="off" data-lpignore="true" data-1p-ignore="true" spellcheck="false" inputmode="text" minlength="6" required placeholder="حداقل ۶ کاراکتر" readonly><button type="button" class="registration-password-eye" data-password-target="studentPassword" aria-label="نمایش رمز ورود" aria-pressed="false" title="نمایش رمز ورود">👁️</button></div></div>
+<div id="studentRegisterStatus" style="min-height:24px;color:#94a3b8;text-align:center;margin:8px 0"></div>
+<button type="button" class="btn" onclick="registerStudent(event)">ایجاد حساب دانش‌آموز</button></form></div>
+</div></div>
+
+<div class="app" id="app"><div class="topbar"><div class="brand"><div class="brand-logo">🤖</div><span>EduBot</span></div><div class="user-area"><span id="userName">کاربر</span><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+<button type="button" id="deleteAccountBtn" class="logout account-action-delete">🗑️ حذف حساب / ساخت حساب از نو</button>
+<button type="button" id="logoutBtn" class="logout">🚪 خروج</button>
+</div></div></div>
+<div class="dashboard"><aside class="sidebar">
+<button type="button" class="menu-btn" onclick="showPage('info',this)">👑 سازنده سامانه</button>
+<button type="button" class="menu-btn" onclick="showPage('gameinfo',this)">💻 اطلاعات سایت</button>
+<button type="button" class="menu-btn active" onclick="showPage('home',this)">🏠 داشبورد</button>
+<button class="menu-btn" onclick="showPage('classes',this)">🏫 کلاس‌های من</button>
+<button class="menu-btn" onclick="showPage('homework',this)">📚 تکالیف</button>
+<button class="menu-btn" onclick="showPage('bot',this)">🤖 ربات هوشمند</button>
+</aside>
+<main class="main">
+<section class="page active" id="page-home"><h1 class="page-title">سلام 👋</h1><p class="page-subtitle" id="welcomeText">به پنل آموزشی خوش آمدید.</p>
+<div class="cards"><div class="card"><div class="card-title">کلاس‌های فعال</div><div class="card-number" id="classCount">0</div></div><div class="card"><div class="card-title">تکالیف</div><div class="card-number" id="homeworkCount">0</div></div><div class="card"><div class="card-title">ربات</div><div class="card-number">🟢 فعال</div></div></div>
+<div class="card"><h3>🤖 وضعیت ربات</h3><p style="color:#94a3b8;margin-top:12px;line-height:2">ربات داخلی سامانه فعال است.<br>تکالیف ثبت‌شده برای کلاس مربوطه به صورت خودکار در پنل دانش‌آموزان نمایش داده می‌شوند.</p></div></section>
+
+<section class="page" id="page-info">
+  <div class="info-page-card">
+    <div class="info-hero">
+      <div class="info-logo">🤖</div>
+      <div><div class="creator-kicker">✦ طراح و سازنده سامانه ✦</div><h1 class="page-title creator-main-title" style="margin:0">محمد متین بالاخانه</h1><p class="page-subtitle" style="margin:5px 0 0">سازنده و طراح سامانه آموزشی EduBot</p><div class="creator-badge">👑 سازنده رسمی سامانه · EduBot</div></div>
+    </div>
+    <div class="info-grid">
+      <div class="info-item"><h3>🎓 مدیریت آموزشی</h3><p>سامانه برای مدیریت کلاس‌ها، عضویت دانش‌آموزان و سازمان‌دهی فعالیت‌های آموزشی طراحی شده است.</p></div>
+      <div class="info-item"><h3>🏫 کلاس‌ها</h3><p>معلم می‌تواند کلاس ایجاد کند و دانش‌آموز با کد کلاس به کلاس مربوطه بپیوندد.</p></div>
+      <div class="info-item"><h3>📚 تکالیف</h3><p>معلم می‌تواند تکلیف ثبت کند و تکالیف کلاس‌های عضو‌شده در پنل دانش‌آموز نمایش داده می‌شود.</p></div>
+      <div class="info-item"><h3>🤖 ربات هوشمند</h3><p>بخش ربات برای گفت‌وگوی آموزشی و نگهداری سابقه گفت‌وگو روی همین دستگاه طراحی شده است.</p></div>
+      <div class="info-item"><h3>🔐 حریم حساب</h3><p>این نسخه بدون سرور و VPS اجرا می‌شود. حساب‌ها و داده‌ها در دیتابیس محلی همین مرورگر ذخیره می‌شوند.</p></div>
+      <div class="info-item"><h3>📱 مخصوص دستگاه شخصی</h3><p>اگر فایل را روی دستگاه دیگری باز کنید، آن دستگاه دیتابیس جداگانه خواهد داشت؛ اطلاعات بین دستگاه‌ها همگام نمی‌شود.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-gameinfo">
+  <div class="game-code-page">
+    <div class="game-code-head">
+      <div class="game-code-icon">&lt;/&gt;</div>
+      <div>
+        <div class="game-code-kicker">SYSTEM / EDU-GAME</div>
+        <h1 class="page-title" style="margin:0">اطلاعات سایت</h1>
+        <p class="page-subtitle" style="margin:5px 0 0">یک بخش کدنویسی‌محور</p>
+      </div>
+      <div class="code-live-dot"><span></span> LIVE</div>
+    </div>
+    <div class="code-console" aria-label="نمایش متحرک کد سامانه">
+      <div class="code-console-top"><span></span><span></span><span></span><b>edubot.game</b><i>⌁</i></div>
+      <div class="code-screen">
+        <div class="code-glow-line line-a"></div><div class="code-glow-line line-b"></div>
+        <div class="code-line"><em>01</em><span><strong>const</strong> game = <b>"EduBot"</b>;</span></div>
+        <div class="code-line"><em>02</em><span><strong>let</strong> mood = <b>"calm + fun"</b>;</span></div>
+        <div class="code-line"><em>03</em><span><strong>function</strong> <i>startAdventure</i>() {</span></div>
+        <div class="code-line indent"><em>04</em><span>player.<i>learn</i>(); <b>// یادگیری شروع شد</b></span></div>
+        <div class="code-line indent"><em>05</em><span>player.<i>play</i>(); <b>// بازی و هیجان</b></span></div>
+        <div class="code-line"><em>06</em><span>}</span></div>
+        <div class="code-line active-code"><em>07</em><span><strong>return</strong> <b>"READY ✦"</b><i class="cursor"></i></span></div>
+        <div class="code-particles"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      </div>
+    </div>
+    <div class="game-info-chips">
+      <div><b>🎮 حالت</b><span>آموزشی و سرگرم‌کننده</span></div>
+      <div><b>⚡ سبک</b><span>سریع، نرم و تعاملی</span></div>
+      <div><b>🧠 هدف</b><span>یادگیری همراه با بازی</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-classes"><h1 class="page-title">کلاس‌های من 🏫</h1><p class="page-subtitle">مدیریت کلاس‌ها و عضویت در کلاس‌های آموزشی</p>
+<div class="class-actions" id="teacherClassActions">
+<div class="card action-card"><div class="action-icon">➕</div><div><h3>ساخت کلاس جدید</h3><p>برای هر کلاس یک نام، پایه و کد ورود بسازید.</p></div><button type="button" class="small-btn" onclick="openClassCreator()">ساخت کلاس</button></div></div>
+<div class="class-actions" id="studentClassActions">
+<div class="card action-card"><div class="action-icon">🔑</div><div><h3>ورود به کلاس</h3><p>کد کلاس را از معلم دریافت و وارد کنید.</p></div><button type="button" class="small-btn" onclick="openJoinClass()">عضویت</button></div></div>
+<div class="card class-form-card hidden" id="classCreatorBox"><h3>✨ ساخت کلاس جدید</h3><form id="createClassForm" onsubmit="createClass(event)">
+<div class="input-row"><div class="input-group"><label>نام کلاس</label><input id="classNameInput" maxlength="60" placeholder="مثلاً ریاضی هشتم" required></div><div class="input-group"><label>پایه</label><select id="classGradeInput" required><option value="">انتخاب پایه</option><option>اول ابتدایی</option><option>دوم ابتدایی</option><option>سوم ابتدایی</option><option>چهارم ابتدایی</option><option>پنجم ابتدایی</option><option>ششم ابتدایی</option><option>هفتم</option><option>هشتم</option><option>نهم</option><option>دهم</option><option>یازدهم</option><option>دوازدهم</option></select></div></div>
+<div class="class-form-actions"><button class="btn" type="submit">🚀 ساخت کلاس</button><button class="btn back" type="button" onclick="closeClassForms()">انصراف</button></div></form></div>
+<div class="card class-form-card hidden" id="joinClassBox"><h3>🔑 عضویت در کلاس</h3><form id="joinClassForm" onsubmit="joinClass(event)"><div class="input-group"><label>کد کلاس</label><input id="joinClassCode" maxlength="20" placeholder="مثلاً CL-ABC123" required></div><div class="class-form-actions"><button class="btn" type="submit">✅ عضویت در کلاس</button><button class="btn back" type="button" onclick="closeClassForms()">انصراف</button></div></form></div>
+<div class="class-grid" id="classGrid"></div></section>
+
+<section class="page" id="page-homework"><h1 class="page-title">تکالیف 📚</h1><p class="page-subtitle">تکالیف کلاس‌های شما</p>
+<div class="card hidden" id="addHomeworkBox"><h3 style="margin-bottom:20px">➕ ارسال تکلیف جدید</h3><form onsubmit="addHomework(event)">
+<div class="input-group"><label>کلاس</label><select id="homeworkClass" required></select></div>
+<div class="input-group"><label>عنوان تکلیف</label><input id="homeworkTitle" placeholder="مثلاً تمرین ریاضی" required></div>
+<div class="input-group"><label>توضیحات</label><textarea id="homeworkDescription" placeholder="توضیحات تکلیف..."></textarea></div>
+<div class="input-group"><label>مهلت انجام</label><input id="homeworkDeadline" type="datetime-local" required></div>
+<button class="btn">🤖 ارسال خودکار به دانش‌آموزان</button></form></div><br><div class="homework" id="homeworkList"></div></section>
+
+<section class="page" id="page-bot"><h1 class="page-title">ربات هوشمند 🤖</h1><p class="page-subtitle">دستیار آموزشی داخلی سامانه</p><div class="bot-layout">
+<div class="bot-box"><div class="bot-head"><div class="bot-avatar">🤖</div><div><strong>EduBot</strong><div class="bot-status">● آنلاین</div></div></div>
+<div class="messages" id="messages"><div class="message bot-message">سلام 👋<br>من ربات هوشمند سامانه هستم.<br>می‌توانم تکالیف کلاس‌ها را مدیریت کنم.</div></div>
+<div id="botAttachmentPreview" style="display:none;padding:10px 15px;border-top:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)"></div>
+<div class="bot-input" style="flex-wrap:wrap">
+<input id="botInput" placeholder="مثلاً: این سؤال را برایم حل کن...">
+<label for="botImageInput" style="width:48px;height:42px;margin:0;display:flex;align-items:center;justify-content:center;border-radius:12px;background:#7c3aed;color:white;font-size:21px;cursor:pointer" title="ارسال عکس">📷</label>
+<input id="botImageInput" type="file" accept="image/*" hidden onchange="previewBotImage(event)">
+<button onclick="sendBotMessage()">ارسال</button>
+</div></div>
+<div class="bot-info"><h3>⚙️ اطلاعات ربات</h3><div class="info-item"><span>وضعیت</span>🟢 فعال</div><div class="info-item"><span>نوع</span>ربات داخلی سایت</div><div class="info-item"><span>وظیفه</span>مدیریت کلاس و تکلیف</div><div class="info-item"><span>ارسال خودکار</span>فعال</div></div>
+</div></section>
+</main></div></div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+function normalizeDigits(v){return String(v??"").replace(/[۰-۹]/g,d=>String(d.charCodeAt(0)-1776)).replace(/[٠-٩]/g,d=>String(d.charCodeAt(0)-1632));}
+/* ===== Standalone local database (IndexedDB) ===== */
+const DB_NAME="EduBot_LocalDB_v1", DB_VERSION=3;
+let _dbPromise=null;
+function openLocalDB(){
+  if(_dbPromise)return _dbPromise;
+  _dbPromise=new Promise((resolve,reject)=>{
+    const req=indexedDB.open(DB_NAME,DB_VERSION);
+    req.onupgradeneeded=()=>{
+      const db=req.result;
+      ["users","classes","homework","botMemory","deviceMeta"].forEach(name=>{if(!db.objectStoreNames.contains(name))db.createObjectStore(name,{keyPath:"id"})});
+    };
+    req.onsuccess=()=>resolve(req.result);
+    req.onerror=()=>reject(req.error||new Error("دیتابیس محلی باز نشد"));
+  });
+  return _dbPromise;
+}
+async function idbAll(store){const db=await openLocalDB();return new Promise((resolve,reject)=>{const tx=db.transaction(store,"readonly"),r=tx.objectStore(store).getAll();r.onsuccess=()=>resolve(r.result||[]);r.onerror=()=>reject(r.error)})}
+async function idbGet(store,id){const db=await openLocalDB();return new Promise((resolve,reject)=>{const tx=db.transaction(store,"readonly"),r=tx.objectStore(store).get(id);r.onsuccess=()=>resolve(r.result||null);r.onerror=()=>reject(r.error)})}
+async function idbPut(store,obj){const db=await openLocalDB();return new Promise((resolve,reject)=>{const tx=db.transaction(store,"readwrite");tx.objectStore(store).put(obj);tx.oncomplete=()=>resolve(obj);tx.onerror=()=>reject(tx.error)})}
+async function idbDelete(store,id){const db=await openLocalDB();return new Promise((resolve,reject)=>{const tx=db.transaction(store,"readwrite");tx.objectStore(store).delete(id);tx.oncomplete=()=>resolve(true);tx.onerror=()=>reject(tx.error)})}
+async function idbClear(store){const db=await openLocalDB();return new Promise((resolve,reject)=>{const tx=db.transaction(store,"readwrite");tx.objectStore(store).clear();tx.oncomplete=()=>resolve(true);tx.onerror=()=>reject(tx.error)})}
+const USER_BACKUP_KEY="edubotUserBackup_v5";
+const USERS_BACKUP_KEY="edubotUsers_v5";
+const CLASSES_BACKUP_KEY="edubotClasses_v5";
+const HOMEWORK_BACKUP_KEY="edubotHomework_v5";
+const DEVICE_LAST_ACCOUNT_ID="lastAccount";
+function readLocalJson(key,fallback){try{const raw=localStorage.getItem(key);return raw?JSON.parse(raw):fallback}catch{return fallback}}
+function writeLocalJson(key,value){try{localStorage.setItem(key,JSON.stringify(value));return true}catch{return false}}
+function saveUserBackup(user){
+  if(!user)return;
+  writeLocalJson(USER_BACKUP_KEY,user);
+  const users=readLocalJson(USERS_BACKUP_KEY,[]);
+  const next=Array.isArray(users)?users.filter(u=>String(u?.id)!==String(user.id)):[];
+  next.push(user);
+  writeLocalJson(USERS_BACKUP_KEY,next);
+}
+function getUserBackup(){return readLocalJson(USER_BACKUP_KEY,null)}
+function clearUserBackup(){try{localStorage.removeItem(USER_BACKUP_KEY)}catch{}}
+function removeLocalUser(userId){
+  const users=readLocalJson(USERS_BACKUP_KEY,[]);
+  if(Array.isArray(users))writeLocalJson(USERS_BACKUP_KEY,users.filter(u=>String(u?.id)!==String(userId)));
+  const backup=getUserBackup();
+  if(backup && String(backup.id)===String(userId))clearUserBackup();
+}
+async function saveLastAccountToDevice(user){
+  if(!user?.id)return false;
+  const safeUser={...user};
+  delete safeUser.password;
+  const account={id:String(safeUser.id),type:safeUser.type,name:safeUser.name,loginKey:safeUser.type==="student"?safeUser.nationalCode:safeUser.email||"",userData:safeUser};
+  const localOk=writeLocalJson("edubotLastAccount",account);
+  saveUserBackup(safeUser);
+  try{await idbPut("deviceMeta",{id:DEVICE_LAST_ACCOUNT_ID,account});return localOk||true}catch{return localOk}
+}
+async function getLastAccountFromDevice(){
+  // مسیر ۱: رکورد صریح «آخرین حساب این دستگاه»
+  let local=readLocalJson("edubotLastAccount",null);
+  if(local?.id){
+    if(!local.userData){
+      const users=readLocalJson(USERS_BACKUP_KEY,[]);
+      const full=Array.isArray(users)?users.find(u=>String(u?.id)===String(local.id)):null;
+      if(full)local.userData=full;
+    }
+    if(!local.userData){
+      try{const full=await idbGet("users",String(local.id));if(full)local.userData=full}catch{}
+    }
+    if(local.userData){
+      writeLocalJson("edubotLastAccount",local);
+      saveUserBackup(local.userData);
+      try{await idbPut("deviceMeta",{id:DEVICE_LAST_ACCOUNT_ID,account:local})}catch{}
+    }
+    return local;
+  }
+
+  // مسیر ۲: نشست قبلی که با بستن فایل از بین نمی‌رود. این فقط برای بازیابی
+  // «آخرین حساب» استفاده می‌شود و به‌تنهایی ورود بدون رمز انجام نمی‌دهد.
+  let sessionId="";
+  try{sessionId=String(localStorage.getItem("edubotSessionId")||"")}catch{}
+  if(sessionId){
+    let candidate=null;
+    const users=readLocalJson(USERS_BACKUP_KEY,[]);
+    if(Array.isArray(users))candidate=users.find(u=>String(u?.id)===sessionId)||null;
+    if(!candidate){try{candidate=await idbGet("users",sessionId)}catch{}}
+    if(candidate){
+      const account={id:String(candidate.id),type:candidate.type,name:candidate.name,loginKey:candidate.type==="student"?candidate.nationalCode:candidate.email||"",userData:candidate};
+      writeLocalJson("edubotLastAccount",account);
+      saveUserBackup(candidate);
+      try{await idbPut("deviceMeta",{id:DEVICE_LAST_ACCOUNT_ID,account})}catch{}
+      return account;
+    }
+  }
+
+  // مسیر ۳: متادیتای IndexedDB
+  try{
+    const meta=await idbGet("deviceMeta",DEVICE_LAST_ACCOUNT_ID);
+    if(meta?.account?.id){
+      const account=meta.account;
+      if(!account.userData){try{const full=await idbGet("users",String(account.id));if(full)account.userData=full}catch{}}
+      if(account.userData){
+        writeLocalJson("edubotLastAccount",account);
+        saveUserBackup(account.userData);
+      }
+      return account;
+    }
+  }catch{}
+
+  // مسیر ۴: هر کاربری که در پشتیبان محلی وجود دارد. آخرین رکورد اضافه‌شده
+  // را به‌عنوان حساب قبلی در نظر می‌گیریم.
+  const users=readLocalJson(USERS_BACKUP_KEY,[]);
+  if(Array.isArray(users)&&users.length){
+    const backup=users[users.length-1];
+    if(backup?.id){
+      const account={id:String(backup.id),type:backup.type,name:backup.name,loginKey:backup.type==="student"?backup.nationalCode:backup.email||"",userData:backup};
+      writeLocalJson("edubotLastAccount",account);
+      try{await idbPut("deviceMeta",{id:DEVICE_LAST_ACCOUNT_ID,account})}catch{}
+      return account;
+    }
+  }
+
+  // مسیر ۵: بکاپ تک‌حساب قدیمی
+  const backup=getUserBackup();
+  if(backup?.id){
+    const account={id:String(backup.id),type:backup.type,name:backup.name,loginKey:backup.type==="student"?backup.nationalCode:backup.email||"",userData:backup};
+    writeLocalJson("edubotLastAccount",account);
+    try{await idbPut("deviceMeta",{id:DEVICE_LAST_ACCOUNT_ID,account})}catch{}
+    return account;
+  }
+  return null;
+}
+async function clearLastAccountFromDevice(){
+  try{await idbDelete("deviceMeta",DEVICE_LAST_ACCOUNT_ID)}catch{}
+  try{localStorage.removeItem("edubotLastAccount")}catch{}
+}
+function saveClassesBackup(items){writeLocalJson(CLASSES_BACKUP_KEY,Array.isArray(items)?items:[])}
+function saveHomeworkBackup(items){writeLocalJson(HOMEWORK_BACKUP_KEY,Array.isArray(items)?items:[])}
+function removeClassFromBackup(classId){
+  const items=readLocalJson(CLASSES_BACKUP_KEY,[]);
+  if(Array.isArray(items))saveClassesBackup(items.filter(x=>String(x?.id)!==String(classId)));
+}
+function removeHomeworkFromBackup(homeworkId){
+  const items=readLocalJson(HOMEWORK_BACKUP_KEY,[]);
+  if(Array.isArray(items))saveHomeworkBackup(items.filter(x=>String(x?.id)!==String(homeworkId)));
+}
+function removeUserOwnedDataFromBackups(userId){
+  const classesBackup=readLocalJson(CLASSES_BACKUP_KEY,[]);
+  if(Array.isArray(classesBackup)){
+    const owned=classesBackup.filter(c=>String(c?.teacherId)===String(userId)).map(c=>String(c.id));
+    saveClassesBackup(classesBackup.filter(c=>String(c?.teacherId)!==String(userId)).map(c=>{
+      if((c.students||[]).some(x=>String(x)===String(userId))) return {...c,students:(c.students||[]).filter(x=>String(x)!==String(userId))};
+      return c;
+    }));
+    const homeworkBackup=readLocalJson(HOMEWORK_BACKUP_KEY,[]);
+    if(Array.isArray(homeworkBackup))saveHomeworkBackup(homeworkBackup.filter(h=>String(h?.teacherId)!==String(userId)&&!owned.includes(String(h?.classId))));
+  }
+}
+async function localUsers(){
+  let users=[];
+  try{users=await idbAll("users")}catch{users=[]}
+  const localUsersList=readLocalJson(USERS_BACKUP_KEY,[]);
+  const backup=getUserBackup();
+  const meta=await getLastAccountFromDevice();
+  const candidates=[...(Array.isArray(localUsersList)?localUsersList:[]),backup,meta?.userData].filter(Boolean);
+  const byId=new Map();
+  for(const u of users)if(u?.id)byId.set(String(u.id),u);
+  for(const candidate of candidates){
+    if(!candidate?.id)continue;
+    const id=String(candidate.id);
+    if(!byId.has(id)){
+      byId.set(id,candidate);
+      try{await idbPut("users",candidate)}catch{}
+    }
+  }
+  const merged=[...byId.values()];
+  writeLocalJson(USERS_BACKUP_KEY,merged);
+  return merged;
+}
+async function localClasses(){
+  let items=[];try{items=await idbAll("classes")}catch{items=[]}
+  const backup=readLocalJson(CLASSES_BACKUP_KEY,[]);
+  const byId=new Map();
+  for(const x of items)if(x?.id)byId.set(String(x.id),x);
+  if(Array.isArray(backup))for(const x of backup)if(x?.id&&!byId.has(String(x.id))){byId.set(String(x.id),x);try{await idbPut("classes",x)}catch{}}
+  const merged=[...byId.values()];saveClassesBackup(merged);return merged;
+}
+async function localHomework(){
+  let items=[];try{items=await idbAll("homework")}catch{items=[]}
+  const backup=readLocalJson(HOMEWORK_BACKUP_KEY,[]);
+  const byId=new Map();
+  for(const x of items)if(x?.id)byId.set(String(x.id),x);
+  if(Array.isArray(backup))for(const x of backup)if(x?.id&&!byId.has(String(x.id))){byId.set(String(x.id),x);try{await idbPut("homework",x)}catch{}}
+  const merged=[...byId.values()];saveHomeworkBackup(merged);return merged;
+}
+async function makeInternalPasswordHash(){const b=new Uint8Array(18);crypto.getRandomValues(b);return Array.from(b,x=>x.toString(16).padStart(2,"0")).join("")}
+async function api(path, options={}){
+  const method=(options.method||"GET").toUpperCase();
+  let body={};try{body=options.body?JSON.parse(options.body):{}}catch{}
+  if(path==="/api/me" && method==="GET"){
+    const id=localStorage.getItem("edubotSessionId"); if(!id)return {user:null,classes:[],homework:[]};
+    const users=await localUsers(),u=users.find(x=>String(x.id)===String(id));
+    if(!u)return {user:null,classes:[],homework:[]};
+    const cs=(await localClasses()).filter(c=>u.type==="teacher"?String(c.teacherId)===String(u.id):(c.students||[]).some(x=>String(x)===String(u.id)));
+    const hs=(await localHomework()).filter(h=>cs.some(c=>String(c.id)===String(h.classId)));
+    return {user:u,classes:cs,homework:hs};
+  }
+  if(path==="/api/auth/register" && method==="POST"){
+    const users=await localUsers();
+    if(body.type==="student"){
+      const code=normalizeDigits(body.nationalCode||"").replace(/\D/g,"");
+      if(users.some(u=>u.type==="student"&&String(u.nationalCode)===code))throw new Error("این کد ملی قبلاً ثبت شده است.");
+      const password=String(body.password||"");
+      if(password.length<6)throw new Error("رمز ورود باید حداقل ۶ کاراکتر باشد.");
+      const passwordSalt=makePasswordSalt();
+      const u={id:String(uid()),type:"student",name:String(body.name||"").trim(),nationalCode:code,phone:normalizeDigits(body.phone||"").replace(/\s|-/g,""),grade:String(body.grade||""),passwordSalt,passwordHash:await hashPassword(password,passwordSalt),createdAt:new Date().toISOString()};
+      await idbPut("users",u);saveUserBackup(u);await saveLastAccountToDevice(u);localStorage.setItem("edubotSessionId",u.id);return {user:u,classes:[],homework:[]};
+    }
+    const email=String(body.email||"").trim().toLowerCase();
+    if(users.some(u=>u.type==="teacher"&&u.email===email))throw new Error("این ایمیل قبلاً ثبت شده است.");
+    const passwordSalt=makePasswordSalt();
+    const u={id:String(uid()),type:"teacher",name:String(body.name||"").trim(),phone:normalizeDigits(body.phone||"").replace(/\s|-/g,""),email,passwordSalt,passwordHash:await hashPassword(String(body.password||""),passwordSalt),createdAt:new Date().toISOString()};
+    await idbPut("users",u);saveUserBackup(u);await saveLastAccountToDevice(u);localStorage.setItem("edubotSessionId",u.id);return {user:u,classes:[],homework:[]};
+  }
+  if(path==="/api/auth/login-password" && method==="POST"){
+    const pw=String(body.password||"");
+    const rawId=String(body.identifier||"").trim();
+    const id=normalizeDigits(rawId);
+    let u=null;
+
+    // اولویت با حساب ذخیره‌شده روی همین دستگاه است. این مسیر مخصوص «ورود به حساب قبلی» است
+    // و نباید به این وابسته باشد که IndexedDB در اجرای جدید فایل هنوز چه چیزی برگردانده است.
+    const last=await getLastAccountFromDevice();
+    const lastUser=last?.userData||null;
+    if(lastUser){
+      const lastKey=lastUser.type==="student"?String(lastUser.nationalCode||""):String(lastUser.email||"").toLowerCase();
+      const wanted=lastUser.type==="student"?id:id.toLowerCase();
+      if(lastKey && lastKey===wanted) u=lastUser;
+    }
+
+    // اگر حساب قبلی با شناسه واردشده یکی نبود، از دیتابیس محلی همه حساب‌ها جست‌وجو می‌کنیم.
+    if(!u){
+      const users=await localUsers();
+      for(const x of users){
+        const match=x.type==="student" ? String(x.nationalCode||"")===id : String(x.email||"").toLowerCase()===id.toLowerCase();
+        if(match){u=x;break}
+      }
+    }
+
+    if(!u)throw new Error("این حساب پیدا نشد (موجود نیست).");
+    if(!u.passwordHash)throw new Error("اطلاعات رمز این حساب ناقص است. لطفاً حساب را دوباره ثبت کنید.");
+    if(!(await verifyPassword(pw,u.passwordHash,u.passwordSalt))) throw new Error("رمز ورود نادرست است.");
+
+    // بعد از ورود موفق، رکورد حساب را دوباره در هر دو محل پایدار ذخیره می‌کنیم.
+    saveUserBackup(u);
+    await saveLastAccountToDevice(u);
+    try{await idbPut("users",u)}catch{}
+    localStorage.setItem("edubotSessionId",u.id);
+    const cs=(await localClasses()).filter(c=>u.type==="teacher"?String(c.teacherId)===String(u.id):(c.students||[]).some(x=>String(x)===String(u.id)));
+    const hs=(await localHomework()).filter(h=>cs.some(c=>String(c.id)===String(h.classId)));
+    return {user:u,classes:cs,homework:hs};
+  }
+  if(path==="/api/auth/logout"&&method==="POST"){localStorage.removeItem("edubotSessionId");return {ok:true}}
+  if(path==="/api/classes"&&method==="POST"){
+    const id=String(uid()),c={id,teacherId:currentUser.id,name:String(body.name||""),grade:String(body.grade||""),code:makeClassCode(),students:[],createdAt:new Date().toISOString()};await idbPut("classes",c);const all=await localClasses();saveClassesBackup(all);return {class:c};
+  }
+  if(path==="/api/classes/join"&&method==="POST"){
+    const cs=await localClasses(),c=cs.find(x=>String(x.code).toUpperCase()===String(body.code||"").toUpperCase());if(!c)throw new Error("کلاسی با این کد پیدا نشد.");if((c.students||[]).some(x=>String(x)===String(currentUser.id)))throw new Error("شما قبلاً عضو این کلاس هستید.");c.students=[...(c.students||[]),currentUser.id];await idbPut("classes",c);const all=await localClasses();saveClassesBackup(all);return {class:c};
+  }
+  if(path.startsWith("/api/classes/")&&method==="DELETE"){
+    const id=decodeURIComponent(path.split("/")[3]);const allHomework=await localHomework();await idbDelete("classes",id);for(const h of allHomework)if(String(h.classId)===String(id)){await idbDelete("homework",h.id);removeHomeworkFromBackup(h.id)}removeClassFromBackup(id);saveClassesBackup(await localClasses());saveHomeworkBackup(await localHomework());return {ok:true};
+  }
+  if(path.startsWith("/api/classes/")&&path.endsWith("/leave")&&method==="POST"){
+    const id=decodeURIComponent(path.split("/")[3]),cs=await localClasses(),c=cs.find(x=>String(x.id)===String(id));if(c){c.students=(c.students||[]).filter(x=>String(x)!==String(currentUser.id));await idbPut("classes",c)}saveClassesBackup(await localClasses());return {ok:true};
+  }
+  if(path==="/api/homework"&&method==="POST"){
+    const h={id:String(uid()),teacherId:currentUser.id,classId:String(body.classId),title:String(body.title||""),description:String(body.description||""),deadline:String(body.deadline||""),createdAt:new Date().toISOString()};await idbPut("homework",h);const all=await localHomework();saveHomeworkBackup(all);return {homework:h};
+  }
+  if(path.startsWith("/api/homework/")&&method==="DELETE"){const id=decodeURIComponent(path.split("/")[3]);await idbDelete("homework",id);removeHomeworkFromBackup(id);saveHomeworkBackup(await localHomework());return {ok:true};}
+  if(path==="/api/bot-memory"&&method==="GET"){const all=await idbAll("botMemory"),m=all.find(x=>String(x.id)===String(currentUser.id));return {messages:m?.messages||[]};}
+  if(path==="/api/bot-memory"&&method==="POST"){await idbPut("botMemory",{id:String(currentUser.id),messages:Array.isArray(body.messages)?body.messages.slice(-100):[]});return {ok:true};}
+  if(path==="/api/bot-memory"&&method==="DELETE"){await idbDelete("botMemory",String(currentUser.id));return {ok:true};}
+  if(path==="/api/account"&&method==="DELETE"){
+    const id=String(currentUser.id);const allClasses=await localClasses();const allHomework=await localHomework();const ownedClassIds=allClasses.filter(c=>String(c.teacherId)===id).map(c=>String(c.id));await idbDelete("users",id);for(const c of allClasses){if(String(c.teacherId)===id)await idbDelete("classes",c.id);else if((c.students||[]).some(x=>String(x)===id)){c.students=c.students.filter(x=>String(x)!==id);await idbPut("classes",c)}}for(const h of allHomework)if(String(h.teacherId)===id||ownedClassIds.includes(String(h.classId)))await idbDelete("homework",h.id);await idbDelete("botMemory",id);removeLocalUser(id);removeUserOwnedDataFromBackups(id);await clearLastAccountFromDevice();localStorage.removeItem("edubotSessionId");saveClassesBackup(await localClasses());saveHomeworkBackup(await localHomework());return {ok:true};
+  }
+  throw new Error("درخواست ناشناخته");
+}
+async function syncFromServer(){try{const data=await api("/api/me");if(data.user){currentUser=data.user;save("currentUser",currentUser);await saveLastAccount(currentUser)}if(Array.isArray(data.classes)){classes=data.classes;save("classes",classes)}if(Array.isArray(data.homework)){homework=data.homework;save("homework",homework)}return !!data.user}catch{return false}}
+const load=(key,def=[])=>{try{const v=JSON.parse(localStorage.getItem(key));return v??def}catch{return def}};
+let teachers=load("teachers"), students=load("students"), classes=load("classes"), homework=load("homework"), currentUser=null;
+// هر بار که فایل دوباره باز می‌شود، نشست کاربر و گفت‌وگوی ربات از نو شروع می‌شود؛
+// اما اطلاعات ثبت‌نامی برای بررسی تکراری بودن کد ملی حفظ می‌شوند.
+// نگه‌داشتن نشست محلی برای اجرای مستقل روی گوشی
+const save=(key,value)=>localStorage.setItem(key,JSON.stringify(value));
+const uid=()=>Date.now()+Math.floor(Math.random()*1000);
+const safe=v=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+
+/* ===== EduBot Security Hardening ===== */
+const SECURITY_SALT_KEY="edubot_security_salt_v1";
+function makePasswordSalt(){
+  const b=new Uint8Array(16);crypto.getRandomValues(b);
+  return Array.from(b,x=>x.toString(16).padStart(2,"0")).join("");
+}
+function getSecuritySalt(){
+  let salt=localStorage.getItem(SECURITY_SALT_KEY);
+  if(!salt){salt=makePasswordSalt();try{localStorage.setItem(SECURITY_SALT_KEY,salt)}catch{}}
+  return salt;
+}
+function bytesToHex(bytes){return Array.from(bytes,x=>x.toString(16).padStart(2,"0")).join("")}
+async function hashPassword(password,saltHex=getSecuritySalt()){
+  const enc=new TextEncoder();
+  const base=await crypto.subtle.importKey("raw",enc.encode(password),"PBKDF2",false,["deriveBits"]);
+  const bits=await crypto.subtle.deriveBits({name:"PBKDF2",salt:enc.encode(String(saltHex)),iterations:120000,hash:"SHA-256"},base,256);
+  return bytesToHex(new Uint8Array(bits));
+}
+async function verifyPassword(password,storedHash,saltHex=getSecuritySalt()){
+  if(typeof password!=="string" || typeof storedHash!=="string" || !storedHash)return false;
+  try{
+    const candidate=await hashPassword(password,saltHex||getSecuritySalt());
+    if(candidate.length!==storedHash.length)return false;
+    let diff=0;
+    for(let i=0;i<candidate.length;i++) diff|=candidate.charCodeAt(i)^storedHash.charCodeAt(i);
+    return diff===0;
+  }catch{return false}
+}
+async function migratePasswords(){
+  let changed=false;
+  for(const list of [teachers,students]){
+    for(const u of list){
+      if(u && typeof u.password==="string" && u.password){
+        const salt=makePasswordSalt();
+        u.passwordSalt=salt;
+        u.passwordHash=await hashPassword(u.password,salt);
+        delete u.password;
+        changed=true;
+      }
+    }
+  }
+  if(changed){save("teachers",teachers);save("students",students)}
+}
+function validateNationalCode(code){
+  code=normalizeDigits(code).replace(/\D/g,"");
+  if(code.length!==10 || /^(\d)\1{9}$/.test(code)) return false;
+  const check=Number(code[9]);
+  let sum=0;
+  for(let i=0;i<9;i++) sum+=Number(code[i])*(10-i);
+  const r=sum%11;
+  return r<2?check===r:check===11-r;
+}
+function validatePhone(phone){return /^09\d{9}$/.test(normalizeDigits(phone).replace(/\s|-/g,""))}
+function rateLimit(key,max=5,windowMs=60000){
+  const now=Date.now(), k="rl_"+key, data=load(k,{count:0,start:now});
+  if(now-data.start>windowMs){localStorage.removeItem(k);return true}
+  if(data.count>=max)return false;
+  data.count++;localStorage.setItem(k,JSON.stringify(data));return true;
+}
+function clearSensitiveFields(){
+  ["teacherPassword","studentPassword"].forEach(id=>{const e=$(id);if(e)e.value=""});
+}
+window.addEventListener("pageshow",clearSensitiveFields);
+migratePasswords().catch(()=>{});
+
+const gradeOptions=["اول ابتدایی","دوم ابتدایی","سوم ابتدایی","چهارم ابتدایی","پنجم ابتدایی","ششم ابتدایی","هفتم","هشتم","نهم","دهم","یازدهم","دوازدهم"];
+function openRegister(type){$("accountTypes").style.display="none";$(type==="teacher"?"teacherRegister":"studentRegister").classList.add("active")}
+function backLogin(){$("accountTypes").style.display="grid";$("teacherRegister").classList.remove("active");$("studentRegister").classList.remove("active")}
+function hasApprovedReRegistration(){
+  if(!currentUser)return false;
+  const reqs=load("reRegistrationRequests",[]);
+  return reqs.some(r=>String(r.userId)===String(currentUser.id)&&r.status==="approved");
+}
+function beginApprovedReRegistration(){
+  if(!currentUser)return;
+  if(!hasApprovedReRegistration()){alert("برای ثبت‌نام از نو ابتدا باید درخواست شما توسط مدیر تأیید شود.");return}
+  const type=currentUser.type;
+  closeReRegisterModal();
+  localStorage.removeItem("currentUser");currentUser=null;
+  $("app").style.display="none";$("loginPage").style.display="flex";
+  $("accountTypes").style.display="grid";$("teacherRegister").classList.remove("active");$("studentRegister").classList.remove("active");
+  openRegister(type);
+}
+async function registerTeacher(e){
+  if(e&&e.preventDefault)e.preventDefault();
+  const name=$("teacherName").value.trim(),phone=normalizeDigits($("teacherPhone").value).replace(/\s|-/g,""),email=$("teacherEmail").value.trim().toLowerCase(),password=$("teacherPassword").value;
+  if(!name||!validatePhone(phone)||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)||password.length<8){alert("اطلاعات را کامل و معتبر وارد کنید؛ شماره موبایل و رمز حداقل ۸ کاراکتر را بررسی کنید.");return false}
+  try{const data=await api("/api/auth/register",{method:"POST",body:JSON.stringify({type:"teacher",name,phone,email,password})});currentUser=data.user;save("currentUser",currentUser);saveUserBackup(currentUser);await saveLastAccount(currentUser);classes=data.classes||[];homework=data.homework||[];clearSensitiveFields();openApp()}catch(err){alert("❌ "+err.message)}return false
+}
+async function registerStudent(e){
+  if(e&&e.preventDefault)e.preventDefault();
+  const name=$("studentName").value.trim();
+  const code=normalizeDigits($("studentCode").value).replace(/\D/g,"");
+  const phone=normalizeDigits($("studentPhone").value).replace(/\s|-/g,"");
+  const grade=$("studentGrade").value;
+  const password=$("studentPassword").value;
+  const status=$("studentRegisterStatus");
+  if(status) status.textContent="";
+  if(!name||!validateNationalCode(code)||!validatePhone(phone)||!grade||password.length<6){
+    if(status) status.textContent="⚠️ نام، کد ملی معتبر، موبایل، پایه و رمز حداقل ۶ کاراکتر را کامل کنید.";
+    return false;
+  }
+  const btn=document.querySelector('#studentRegister .btn:not(.back)');
+  if(btn){btn.disabled=true;btn.textContent="در حال ساخت حساب..."}
+  try{
+    const data=await api("/api/auth/register",{method:"POST",body:JSON.stringify({type:"student",name,nationalCode:code,phone,grade,password})});
+    currentUser=data.user;
+    save("currentUser",currentUser);
+    await saveLastAccount(currentUser);
+    classes=data.classes||[];
+    homework=data.homework||[];
+    $("studentRegistrationForm")?.reset();
+    clearSensitiveFields();
+    openApp();
+  }catch(err){
+    if(status) status.textContent="❌ "+err.message;
+    else alert("❌ "+err.message);
+  }finally{
+    if(btn){btn.disabled=false;btn.textContent="ایجاد حساب دانش‌آموز"}
+  }
+  return false;
+}
+function makeClassCode(){let code;do{code="CL-"+Math.random().toString(36).slice(2,8).toUpperCase()}while(classes.some(c=>c.code===code));return code}
+async function createClass(e){e.preventDefault();if(!currentUser||currentUser.type!=="teacher"){alert("فقط معلم می‌تواند کلاس بسازد.");return false}const name=$("classNameInput").value.trim(),grade=$("classGradeInput").value;if(!name||!grade){alert("نام و پایه کلاس را انتخاب کنید.");return false}try{const data=await api("/api/classes",{method:"POST",body:JSON.stringify({name,grade})});classes.push(data.class);save("classes",classes);$("createClassForm").reset();closeClassForms();renderClasses();updateDashboard();updateHomeworkClassSelect();alert("کلاس با موفقیت ساخته شد.\nکد ورود: "+data.class.code)}catch(e){alert("❌ "+e.message)}return false}
+function openClassCreator(){$("classCreatorBox").classList.remove("hidden");$("joinClassBox").classList.add("hidden");$("classNameInput").focus()}
+function openJoinClass(){$("joinClassBox").classList.remove("hidden");$("classCreatorBox").classList.add("hidden");$("joinClassCode").focus()}
+function closeClassForms(){$("classCreatorBox").classList.add("hidden");$("joinClassBox").classList.add("hidden")}
+async function joinClass(e){e.preventDefault();if(!currentUser||currentUser.type!=="student"){alert("فقط دانش‌آموز می‌تواند وارد کلاس شود.");return false}const code=$("joinClassCode").value.trim().toUpperCase();try{const data=await api("/api/classes/join",{method:"POST",body:JSON.stringify({code})});await syncFromServer();$("joinClassForm").reset();closeClassForms();renderClasses();renderHomework();updateDashboard();alert("با موفقیت عضو کلاس «"+data.class.name+"» شدید.")}catch(e){alert("❌ "+e.message)}return false}
+
+
+function getSecretValue(id){
+  const el=$(id); if(!el)return "";
+  return el.isContentEditable ? String(el.textContent||"") : String(el.value||"");
+}
+function setSecretValue(id,value){
+  const el=$(id); if(!el)return;
+  if(el.isContentEditable) el.textContent=String(value??""); else el.value=String(value??"");
+}
+function bindSecretEditor(id){
+  const el=$(id); if(!el || !el.isContentEditable)return;
+  el.addEventListener("keydown",e=>{
+    if(e.key==="Enter"){e.preventDefault();}
+  });
+  el.addEventListener("paste",e=>{
+    e.preventDefault();
+    const text=(e.clipboardData||window.clipboardData)?.getData("text")||"";
+    const clean=text.replace(/[\r\n]/g,"");
+    if(document.execCommand) document.execCommand("insertText",false,clean);
+  });
+}
+bindSecretEditor("previousAccountPassword");
+bindSecretEditor("returnPassword");
+
+async function showReturningLogin(){
+  $("accountTypes").style.display="none";
+  $("previousAccountBox")?.classList.add("hidden");
+  $("returnLoginBox").classList.remove("hidden");
+  $("returnLoginError").textContent="";
+  let info=await getLastAccountFromDevice();
+  if(info?.id && !info.userData){
+    const users=readLocalJson(USERS_BACKUP_KEY,[]);
+    const full=Array.isArray(users)?users.find(u=>String(u?.id)===String(info.id)):null;
+    if(full){info.userData=full;await saveLastAccountToDevice(full);}
+  }
+  $("returnIdentifier").value=info?.loginKey||"";
+  setSecretValue("returnPassword","");
+  setTimeout(()=>$("returnIdentifier")?.focus(),80);
+}
+async function saveLastAccount(user){
+  if(!user?.id)return false;
+  return await saveLastAccountToDevice(user);
+}
+function getLastAccount(){
+  const local=readLocalJson("edubotLastAccount",null);
+  return local?.id?local:null;
+}
+function showRegisterChoices(){
+  $("returnLoginBox").classList.add("hidden");
+  $("previousAccountBox")?.classList.add("hidden");
+  $("accountTypes").style.display="grid";
+}
+async function loginExistingUser(){
+  const identifier=normalizeDigits($("returnIdentifier").value).trim(),pw=getSecretValue("returnPassword"),err=$("returnLoginError");
+  err.textContent="";
+  if(!identifier||!pw){err.textContent="⚠️ شناسه و رمز ورود را وارد کنید.";return}
+  try{const data=await api("/api/auth/login-password",{method:"POST",body:JSON.stringify({identifier,password:pw})});currentUser=data.user;save("currentUser",currentUser);saveUserBackup(currentUser);await saveLastAccount(currentUser);classes=data.classes||[];homework=data.homework||[];clearSensitiveFields();openApp()}catch(e){err.textContent="❌ "+e.message}
+}
+async function showPreviousAccountLogin(){
+  $("accountTypes").style.display="none";
+  $("returnLoginBox").classList.add("hidden");
+  $("previousAccountBox").classList.remove("hidden");
+  $("previousAccountError").textContent="";
+  let info=await getLastAccountFromDevice();
+  if(info?.id && !info.userData){
+    const users=readLocalJson(USERS_BACKUP_KEY,[]);
+    const full=Array.isArray(users)?users.find(u=>String(u?.id)===String(info.id)):null;
+    if(full){info.userData=full;await saveLastAccountToDevice(full);}
+  }
+  $("previousAccountIdentifier").value=info?.loginKey||"";
+  setSecretValue("previousAccountPassword","");
+  setTimeout(()=>$("previousAccountPassword")?.focus(),80);
+}
+async function loginByPasswordOnly(){
+  const identifier=normalizeDigits($("previousAccountIdentifier").value).trim();
+  const pw=getSecretValue("previousAccountPassword");
+  const err=$("previousAccountError"); err.textContent="";
+  if(!identifier||!pw){err.textContent="⚠️ شناسه و رمز ورود را وارد کنید.";return;}
+  try{
+    // ابتدا حسابی که روی همین دستگاه ذخیره شده، سپس همه پشتیبان‌های محلی.
+    const info=await getLastAccountFromDevice();
+    let saved=info?.userData||null;
+    const wanted=identifier.toLowerCase();
+    const keyOf=u=>u?.type==="student"?String(u.nationalCode||""):String(u.email||"").toLowerCase();
+    if(saved && keyOf(saved)!==wanted) saved=null;
+    if(!saved){
+      const backups=readLocalJson(USERS_BACKUP_KEY,[]);
+      if(Array.isArray(backups))saved=backups.find(u=>keyOf(u)===wanted)||null;
+    }
+    if(!saved){
+      try{const users=await idbAll("users");saved=users.find(u=>keyOf(u)===wanted)||null}catch{}
+    }
+    if(!saved?.id)throw new Error("این حساب پیدا نشد (موجود نیست).");
+    if(!saved.passwordHash)throw new Error("اطلاعات رمز این حساب ناقص است. لطفاً حساب را دوباره ثبت کنید.");
+    if(!(await verifyPassword(pw,saved.passwordHash,saved.passwordSalt)))throw new Error("رمز ورود نادرست است.");
+
+    await idbPut("users",saved);
+    saveUserBackup(saved);
+    await saveLastAccountToDevice(saved);
+    localStorage.setItem("edubotSessionId",String(saved.id));
+    currentUser=saved;
+    classes=await localClasses();
+    homework=await localHomework();
+    classes=classes.filter(c=>saved.type==="teacher"?String(c.teacherId)===String(saved.id):(c.students||[]).some(x=>String(x)===String(saved.id)));
+    homework=homework.filter(h=>classes.some(c=>String(c.id)===String(h.classId)));
+    save("currentUser",currentUser);
+    save("classes",classes);
+    save("homework",homework);
+    clearSensitiveFields();
+    openApp();
+  }catch(e){err.textContent="❌ "+(e?.message||"ورود انجام نشد.");}
+}
+function backToAccountChoices(){
+  $("previousAccountBox").classList.add("hidden");
+  $("returnLoginBox")?.classList.add("hidden");
+  $("accountTypes").style.display="grid";
+}
+
+
+/* ===== Password/code reminder — ONLY on choosing a registration access-code field ===== */
+let loginCodeReminderTarget=null;
+let suppressLoginCodeReminderUntil=0;
+function closeLoginCodeReminder(focusTarget=false){
+  const m=$("loginCodeReminderModal"); if(m)m.classList.add("hidden");
+  const target=loginCodeReminderTarget; loginCodeReminderTarget=null;
+  // جلوگیری از بازشدن دوباره هشدار در اثر لمس/کلیک دومِ همان لحظه
+  suppressLoginCodeReminderUntil=Date.now()+700;
+  if(target){
+    target.removeAttribute("readonly");
+    if(focusTarget)setTimeout(()=>target.focus(),80);
+  }
+}
+function openLoginCodeReminder(target){
+  const m=$("loginCodeReminderModal"); if(!m)return;
+  loginCodeReminderTarget=target||null;
+  if(target)target.setAttribute("readonly","readonly");
+  m.classList.remove("hidden");
+}
+function initLoginCodeReminder(){
+  const reminderModal=$("loginCodeReminderModal");
+  if(reminderModal && reminderModal.parentElement!==document.body) document.body.appendChild(reminderModal);
+  const cont=$("loginCodeReminderContinue"),cancel=$("loginCodeReminderCancel");
+  if(cont)cont.addEventListener("click",()=>closeLoginCodeReminder(true));
+  if(cancel)cancel.addEventListener("click",()=>closeLoginCodeReminder(true));
+
+  const showForPassword=(inp,e)=>{
+    if(!inp || $("loginCodeReminderModal")?.classList.contains("hidden")===false)return;
+    if(Date.now()<suppressLoginCodeReminderUntil)return;
+    if(e){e.preventDefault();e.stopPropagation();}
+    openLoginCodeReminder(inp);
+    inp.blur();
+  };
+
+  [$("teacherPassword"),$("studentPassword")].forEach(inp=>{
+    if(!inp)return;
+    const group=inp.closest(".input-group");
+    const label=group?.querySelector("label");
+    if(label){
+      label.addEventListener("pointerdown",e=>showForPassword(inp,e),true);
+      label.addEventListener("click",e=>showForPassword(inp,e),true);
+    }
+    inp.addEventListener("pointerdown",e=>showForPassword(inp,e),true);
+    inp.addEventListener("click",e=>showForPassword(inp,e),true);
+  });
+
+  document.querySelectorAll('.login-password-eye').forEach(btn=>{
+    btn.addEventListener('click',e=>{
+      e.preventDefault();
+      e.stopPropagation();
+      const inp=$(btn.dataset.passwordTarget);
+      if(!inp)return;
+      const show=!inp.classList.contains('password-visible');
+      inp.classList.toggle('password-visible',show);
+      btn.textContent='👁️';
+      btn.setAttribute('aria-label',show?'مخفی کردن رمز ورود':'نمایش رمز ورود');
+      btn.setAttribute('aria-pressed',String(show));
+      btn.title=show?'مخفی کردن رمز ورود':'نمایش رمز ورود';
+      inp.focus();
+    });
+  });
+
+  document.querySelectorAll('.registration-password-eye').forEach(btn=>{
+    btn.addEventListener('click',e=>{
+      e.preventDefault();
+      e.stopPropagation();
+      const inp=$(btn.dataset.passwordTarget);
+      if(!inp)return;
+      if(inp.hasAttribute('readonly')){
+        openLoginCodeReminder(inp);
+        inp.blur();
+        return;
+      }
+      const visible=inp.classList.toggle('password-visible');
+      btn.setAttribute('aria-pressed',visible?'true':'false');
+      btn.setAttribute('aria-label',visible?'مخفی کردن رمز':'نمایش رمز');
+      btn.setAttribute('title',visible?'مخفی کردن رمز':'نمایش رمز');
+      btn.textContent='👁️';
+    });
+  });
+}
+initLoginCodeReminder();
+
+async function prepareEntry(){
+  const info=await getLastAccountFromDevice();
+  if(info?.userData){saveUserBackup(info.userData);writeLocalJson("edubotLastAccount",info);}
+  if(info?.id) await showReturningLogin(); else showRegisterChoices();
+}
+function openApp(){resetBotConversation();restoreBotMemory();$("loginPage").style.display="none";$('app').style.display="block";document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));$('page-home')?.classList.add('active');document.querySelectorAll('.menu-btn').forEach(b=>b.classList.remove('active'));document.querySelector(".menu-btn[onclick*=\"showPage(\'home\'")?.classList.add('active');$('userName').textContent=currentUser.name;$('welcomeText').textContent="خوش آمدید "+currentUser.name+" 🌹";setupTeacherStudentUI();updateDashboard();renderClasses();renderHomework()}
+function updateDashboard(){if(!currentUser)return;const my=currentUser.type==="teacher"?classes.filter(c=>c.teacherId===currentUser.id):classes.filter(c=>c.students.includes(currentUser.id));$('classCount').textContent=my.length;const ids=my.map(c=>c.id);$('homeworkCount').textContent=homework.filter(h=>ids.includes(h.classId)).length}
+function setupTeacherStudentUI(){const teacher=currentUser.type==="teacher";$('teacherClassActions').classList.toggle("hidden",!teacher);$('studentClassActions').classList.toggle("hidden",teacher);$('addHomeworkBox').classList.toggle("hidden",!teacher)}
+function showPage(page,button){if(page==='bot'){resetBotConversation();restoreBotMemory();}document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));const target=$('page-'+page);if(target)target.classList.add('active');document.querySelectorAll('.menu-btn').forEach(b=>b.classList.remove('active'));if(button)button.classList.add('active');if(page==='classes')renderClasses();if(page==='homework'){updateHomeworkClassSelect();renderHomework()}}
+function renderClasses(){const grid=$('classGrid');grid.innerHTML='';if(!currentUser)return;const my=currentUser.type==='teacher'?classes.filter(c=>c.teacherId===currentUser.id):classes.filter(c=>c.students.includes(currentUser.id));if(!my.length){grid.innerHTML='<div class="card empty-state"><div>🏫</div><h3>'+ (currentUser.type==='teacher'?'هنوز کلاسی نساخته‌اید':'هنوز عضو کلاسی نیستید') +'</h3><p>'+ (currentUser.type==='teacher'?'از گزینه «ساخت کلاس» یک کلاس جدید ایجاد کنید.':'کد کلاس را از معلم بگیرید و از گزینه «عضویت» وارد شوید.') +'</p></div>';updateHomeworkClassSelect();return}my.forEach(c=>{const d=document.createElement('div');d.className='class-card';d.innerHTML='<div class="class-top"><span class="class-status">● فعال</span><span class="class-icon">🏫</span></div><h3>'+safe(c.name)+'</h3><p class="muted">پایه: '+safe(c.grade)+'</p><div class="class-code">'+safe(c.code)+'</div><p class="muted student-count">👨‍🎓 '+c.students.length+' دانش‌آموز</p>'+(currentUser.type==='teacher'?'<div class="class-card-actions"><button class="small-btn" type="button" onclick="copyClassCode(\''+c.code+'\')">کپی کد</button><button class="danger-btn" type="button" onclick="deleteClass(\''+c.id+'\')">حذف</button></div>':'<button class="small-btn" type="button" onclick="leaveClass(\''+c.id+'\')">خروج از کلاس</button>');grid.appendChild(d)});updateHomeworkClassSelect()}
+function copyClassCode(code){navigator.clipboard?.writeText(code).then(()=>alert('کد کلاس کپی شد: '+code)).catch(()=>alert('کد کلاس: '+code))}
+async function deleteClass(id){const c=classes.find(x=>String(x.id)===String(id));if(!c||currentUser.type!=="teacher"||c.teacherId!==currentUser.id)return;if(!confirm("این کلاس و تکالیف مرتبط با آن حذف شود؟"))return;try{await api("/api/classes/"+encodeURIComponent(id),{method:"DELETE"});classes=classes.filter(x=>x.id!==c.id);homework=homework.filter(h=>h.classId!==c.id);save("classes",classes);save("homework",homework);renderClasses();renderHomework();updateDashboard()}catch(e){alert("❌ "+e.message)}}
+async function leaveClass(id){const c=classes.find(x=>String(x.id)===String(id));if(!c)return;if(!confirm("از این کلاس خارج شوید؟"))return;try{await api("/api/classes/"+encodeURIComponent(id)+"/leave",{method:"POST"});classes=classes.filter(x=>x.id!==c.id);save("classes",classes);renderClasses();renderHomework();updateDashboard()}catch(e){alert("❌ "+e.message)}}
+function updateHomeworkClassSelect(){const sel=$('homeworkClass');if(!sel)return;sel.innerHTML='';if(currentUser?.type!=='teacher')return;const mine=classes.filter(c=>c.teacherId===currentUser.id);if(!mine.length){sel.innerHTML='<option value="">ابتدا یک کلاس بسازید</option>';return}mine.forEach(c=>{const o=document.createElement('option');o.value=c.id;o.textContent=c.name+' - '+c.grade;sel.appendChild(o)})}
+async function addHomework(e){e.preventDefault();if(currentUser?.type!=="teacher"){alert("فقط معلم می‌تواند تکلیف ارسال کند.");return false}const classId=$("homeworkClass").value,c=classes.find(x=>String(x.id)===String(classId)),title=$("homeworkTitle").value.trim(),deadline=$("homeworkDeadline").value;if(!c){alert("ابتدا یک کلاس بسازید.");return false}if(!title||!deadline){alert("عنوان و مهلت تکلیف را وارد کنید.");return false}try{const data=await api("/api/homework",{method:"POST",body:JSON.stringify({classId,title,description:$("homeworkDescription").value.trim(),deadline})});homework.push(data.homework);save("homework",homework);$("addHomeworkBox").querySelector("form").reset();renderHomework();updateDashboard();alert("🤖 تکلیف با موفقیت برای کلاس ثبت شد.")}catch(e){alert("❌ "+e.message)}return false}
+function botNotifyHomework(task,c){students.filter(s=>c.students.includes(s.id)).forEach(student=>{const key='notifications_'+student.id,n=load(key);n.push({id:uid(),homeworkId:task.id,message:'🤖 تکلیف جدید برای کلاس '+c.name,title:task.title,time:new Date().toLocaleString('fa-IR')});save(key,n)})}
+function renderHomework(){const list=$('homeworkList');if(!list||!currentUser)return;list.innerHTML='';const my=currentUser.type==='teacher'?classes.filter(c=>c.teacherId===currentUser.id):classes.filter(c=>c.students.includes(currentUser.id));const ids=my.map(c=>c.id),visible=homework.filter(h=>ids.includes(h.classId));if(!visible.length){list.innerHTML='<div class="card empty-state"><div>📚</div><h3>هنوز تکلیفی وجود ندارد</h3><p>'+ (currentUser.type==='teacher'?'بعد از ساخت کلاس، تکلیف جدید ارسال کنید.':'تکالیف کلاس‌های عضو‌شده اینجا نمایش داده می‌شوند.')+'</p></div>';return}visible.slice().reverse().forEach(h=>{const c=classes.find(x=>x.id===h.classId),d=document.createElement('div');d.className='homework-card';d.innerHTML='<div class="homework-head"><span class="homework-icon">📚</span><span class="badge">'+safe(c?.name||'کلاس')+'</span></div><h3>'+safe(h.title)+'</h3><p class="homework-description">'+safe(h.description||'بدون توضیحات')+'</p><div class="homework-meta"><span>⏰ '+safe(h.deadline)+'</span><span>🤖 ثبت‌شده در سامانه</span></div>'+(currentUser.type==='teacher'?'<button class="danger-btn" type="button" onclick="deleteHomework(\''+h.id+'\')">حذف تکلیف</button>':'');list.appendChild(d)})}
+async function deleteHomework(id){const h=homework.find(x=>String(x.id)===String(id));if(!h||h.teacherId!==currentUser.id)return;if(!confirm("این تکلیف حذف شود؟"))return;try{await api("/api/homework/"+encodeURIComponent(id),{method:"DELETE"});homework=homework.filter(x=>x.id!==h.id);save("homework",homework);renderHomework();updateDashboard()}catch(e){alert("❌ "+e.message)}}
+
+let botImageData=null;
+
+function previewBotImage(e){
+  const file=e.target.files[0];
+  if(!file)return;
+  if(!file.type.startsWith("image/")){alert("لطفاً یک فایل عکس انتخاب کنید.");e.target.value="";return}
+  const reader=new FileReader();
+  reader.onload=function(ev){
+    botImageData=ev.target.result;
+    const p=document.getElementById("botAttachmentPreview");
+    p.style.display="block";
+    p.innerHTML=`<div style="display:flex;align-items:center;gap:12px">
+      <img src="${botImageData}" style="width:70px;height:70px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.15)">
+      <div style="flex:1;color:#cbd5e1">📷 عکس آماده ارسال است</div>
+      <button type="button" onclick="removeBotImage()" style="border:0;border-radius:9px;padding:8px 12px;background:rgba(239,68,68,.18);color:#fca5a5">حذف</button>
+    </div>`;
+  };
+  reader.readAsDataURL(file);
+}
+
+function removeBotImage(){
+  botImageData=null;
+  $("botImageInput").value="";
+  $("botAttachmentPreview").style.display="none";
+  $("botAttachmentPreview").innerHTML="";
+}
+
+function resetBotConversation(){
+  botImageData=null;
+  const input=$("botInput"), image=$("botImageInput"), preview=$("botAttachmentPreview");
+  if(input) input.value="";
+  if(image) image.value="";
+  if(preview){preview.style.display="none";preview.innerHTML="";}
+}
+
+function sendBotMessage(){
+  const input=$("botInput"),text=input.value.trim();
+  if(!text && !botImageData)return;
+
+  if(botImageData){
+    addImageMessage(botImageData,text||"📷 این عکس را بررسی کن","user-message");
+  }else{
+    addMessage(text,"user-message");
+  }
+
+  input.value="";
+  const hadImage=!!botImageData;
+  removeBotImage();
+
+  setTimeout(()=>{
+    let response;
+    if(hadImage){
+      response="📷 عکس شما دریافت شد. فعلاً تصویر در همین صفحه نمایش داده می‌شود؛ برای اینکه ربات واقعاً متن سؤال داخل عکس را بخواند، حل کند یا درباره آن پاسخ دقیق بدهد باید بخش هوش مصنوعی تصویری به سرور/API متصل شود.";
+    }else{
+      response="متوجه درخواست شما نشدم. می‌توانید درباره کلاس یا تکالیف سؤال کنید.";
+      if(text.includes("تکلیف")||text.includes("تکالیف")){
+        const myClasses=currentUser.type==="teacher"?classes.filter(c=>c.teacherId===currentUser.id):classes.filter(c=>c.students.includes(currentUser.id));
+        const ids=myClasses.map(c=>c.id);
+        response="📚 تعداد تکالیف قابل مشاهده شما: "+homework.filter(h=>ids.includes(h.classId)).length;
+      }
+      else if(text.includes("کلاس")){
+        let count=currentUser.type==="teacher"?classes.filter(c=>c.teacherId===currentUser.id).length:classes.filter(c=>c.students.includes(currentUser.id)).length;
+        response="🏫 شما در حال حاضر "+count+" کلاس دارید.";
+      }else if(text.includes("سلام"))response="سلام 👋 من EduBot هستم. در خدمت شما هستم.";
+    }
+    addMessage(response,"bot-message");
+  },500);
+}
+
+function addImageMessage(src,text,type){
+  const d=document.createElement("div");
+  d.className="message "+type;
+  d.innerHTML=`${text?`<div style="margin-bottom:8px">${escapeHtml(text)}</div>`:""}<img src="${src}" style="max-width:240px;max-height:240px;object-fit:contain;border-radius:12px;display:block">`;
+  $("messages").appendChild(d);
+  $("messages").scrollTop=$("messages").scrollHeight;
+  saveBotMemory();
+}
+
+function escapeHtml(s){
+  return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+}
+
+
+function addMessage(text,type){
+  const d=document.createElement("div");
+  d.className="message "+type;
+  d.textContent=String(text??"");
+  $("messages").appendChild(d);
+  $("messages").scrollTop=$("messages").scrollHeight;
+  saveBotMemory();
+}
+
+/* ===== Fresh memory start: old bot conversations are cleared once ===== */
+function resetOldBotMemoriesOnce(){
+  const flag="edubotMemoryResetV2";
+  if(localStorage.getItem(flag)==="1") return;
+  const keys=[];
+  for(let i=0;i<localStorage.length;i++){
+    const k=localStorage.key(i);
+    if(k && k.startsWith("edubotBotMemory_")) keys.push(k);
+  }
+  keys.forEach(k=>localStorage.removeItem(k));
+  localStorage.setItem(flag,"1");
+}
+
+/* ===== Persistent EduBot conversation memory (enabled from now on) ===== */
+function botMemoryKey(){return "edubotBotMemory_"+(currentUser?String(currentUser.id):"guest")}
+let botSaveTimer=null;
+function loadBotMemory(){return []}
+async function saveBotMemory(){if(!currentUser)return;clearTimeout(botSaveTimer);botSaveTimer=setTimeout(async()=>{try{const msgs=[...document.querySelectorAll("#messages .message")].map(m=>({role:m.classList.contains("user-message")?"user":"bot",text:m.textContent||""})).slice(-100);await api("/api/bot-memory",{method:"POST",body:JSON.stringify({messages:msgs})})}catch{}},250)}
+async function resetBotMemoryForCurrentUser(){try{if(currentUser)await api("/api/bot-memory",{method:"DELETE"})}catch{}const box=$("messages");if(box)box.innerHTML=""}
+async function restoreBotMemory(){const box=$("messages");if(!box)return;box.innerHTML="";let data=[];try{const r=await api("/api/bot-memory");data=Array.isArray(r.messages)?r.messages:[]}catch{}if(!data.length){const welcome=document.createElement("div");welcome.className="message bot-message";welcome.textContent="سلام 👋\nمن ربات هوشمند سامانه هستم.\nگفت‌وگوهای این حساب از این به بعد در دیتابیس ذخیره می‌شوند.";box.appendChild(welcome);saveBotMemory();return}data.forEach(m=>{const d=document.createElement("div");d.className="message "+(m.role==="user"?"user-message":"bot-message");d.textContent=String(m.text??"");box.appendChild(d)});box.scrollTop=box.scrollHeight}
+
+async function resetAppToLoginScreen(){
+  try{localStorage.removeItem("edubotSessionId");localStorage.removeItem("currentUser")}catch{}
+  currentUser=null; classes=[]; homework=[];
+  const app=$("app"),login=$("loginPage");
+  if(app) app.style.display="none";
+  if(login) login.style.display="block";
+  try{clearSensitiveFields()}catch{}
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  // حساب قبلی باید روی همان دستگاه حفظ شود؛ از بکاپ کامل استفاده می‌کنیم.
+  const info=await getLastAccountFromDevice();
+  if(info?.id) await showReturningLogin(); else showRegisterChoices();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+async function logout(){
+  // خروج فقط نشست را پاک می‌کند؛ حساب، رمز و اطلاعات حساب باقی می‌ماند.
+  // شناسه آخرین حساب عمداً نگه داشته می‌شود تا ورود مجدد روی همین دستگاه ممکن باشد.
+  if(currentUser){try{await saveLastAccount(currentUser)}catch{}}
+  try{localStorage.removeItem("edubotSessionId");}catch{}
+  try{localStorage.removeItem("currentUser");}catch{}
+  currentUser=null;
+  classes=[];
+  homework=[];
+  await resetAppToLoginScreen();
+}
+
+function confirmLogout(){
+  if(!currentUser)return;
+  void logout();
+}
+
+let pendingDeleteSecurityCode=null;
+
+function closeDeleteSecurityModal(){
+  const m=$("accountSecurityModal");
+  if(m)m.classList.add("hidden");
+  pendingDeleteSecurityCode=null;
+  const input=$("secureDeleteInput");
+  if(input)input.value="";
+  const err=$("secureDeleteError");
+  if(err)err.textContent="";
+}
+
+function makeDeleteSecurityCode(){
+  return String(Math.floor(100000 + Math.random()*900000));
+}
+
+function showDeleteConfirmation(){
+  const m=$("accountSecurityModal");
+  if(!m)return;
+  const title=$("secureDeleteTitle"), text=$("secureDeleteText"), code=$("secureDeleteCode");
+  const input=$("secureDeleteInput"), err=$("secureDeleteError");
+  title.textContent="حذف حساب";
+  text.textContent="کد صحیح است. مطمئنید که می‌خواهید حساب خود را حذف کنید؟";
+  code.textContent="";
+  input.value="";
+  input.style.display="none";
+  err.textContent="";
+  $("secureDeleteCheck").textContent="بله، مطمئنم";
+  $("secureDeleteCancel").textContent="خیر، لغو";
+  m.classList.remove("hidden");
+}
+
+async function performDeleteAccount(){
+  if(!currentUser){closeDeleteSecurityModal();return}
+  const userId=String(currentUser.id);
+  try{
+    // حذف مستقیم از دیتابیس محلی IndexedDB
+    await api("/api/account",{method:"DELETE"});
+    try{await idbDelete("botMemory",userId)}catch{}
+    currentUser=null; classes=[]; homework=[];
+    try{
+      localStorage.removeItem("currentUser");
+      localStorage.removeItem("edubotLastAccount");
+      localStorage.removeItem("edubotSessionId");
+      clearUserBackup();
+    }catch{}
+    const form=$("studentRegistrationForm"); if(form)form.reset();
+    const tform=$("teacherRegistrationForm"); if(tform)tform.reset();
+    closeDeleteSecurityModal();
+    resetAppToLoginScreen();
+  }catch(e){
+    const err=$("secureDeleteError");
+    if(err)err.textContent="❌ حذف حساب انجام نشد. دوباره تلاش کنید.";
+  }
+}
+
+function openDeleteSecurityStep(){
+  if(!currentUser)return;
+  pendingDeleteSecurityCode=makeDeleteSecurityCode();
+  const m=$("accountSecurityModal");
+  const title=$("secureDeleteTitle"), text=$("secureDeleteText"), code=$("secureDeleteCode");
+  const input=$("secureDeleteInput"), err=$("secureDeleteError");
+  title.textContent="کد امنیتی حذف حساب";
+  text.textContent="برای حذف حساب، کد امنیتی زیر را وارد کنید.";
+  code.textContent=pendingDeleteSecurityCode;
+  input.style.display="block";
+  input.value="";
+  input.autocomplete="off";
+  err.textContent="";
+  $("secureDeleteCheck").textContent="تأیید کد";
+  $("secureDeleteCancel").textContent="انصراف";
+  m.classList.remove("hidden");
+  setTimeout(()=>input.focus(),80);
+}
+
+function confirmDeleteAccount(){
+  openDeleteSecurityStep();
+}
+
+function handleDeleteSecurityAction(){
+  const input=$("secureDeleteInput");
+  const err=$("secureDeleteError");
+  // مرحله اول: بررسی کد
+  if(input.style.display!=="none"){
+    const entered=normalizeDigits(input.value).replace(/\D/g,"");
+    if(entered!==pendingDeleteSecurityCode){
+      err.textContent="❌ کد امنیتی اشتباه است.";
+      input.value="";
+      input.focus();
+      return;
+    }
+    showDeleteConfirmation();
+    return;
+  }
+  // مرحله دوم: کاربر «بله، مطمئنم» را انتخاب کرده است
+  void performDeleteAccount();
+}
+
+function initSecureDeleteModal(){
+  const check=$("secureDeleteCheck"), cancel=$("secureDeleteCancel");
+  if(check)check.addEventListener("click",handleDeleteSecurityAction);
+  if(cancel)cancel.addEventListener("click",closeDeleteSecurityModal);
+}
+initSecureDeleteModal();
+
+window.logout=logout;
+window.confirmLogout=confirmLogout;
+window.confirmDeleteAccount=confirmDeleteAccount;
+
+/* ===== EduBot Local Anti-Malware / File Safety Layer ===== */
+const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
+const ALLOWED_IMAGE_TYPES = new Set(["image/jpeg","image/png","image/webp","image/gif"]);
+const BLOCKED_EXTENSIONS = /\.(exe|dll|scr|bat|cmd|com|msi|vbs|js|jse|wsf|wsh|ps1|psm1|hta|jar|apk|dmg|iso|zip|rar|7z|sh|php|asp|aspx|jsp)$/i;
+
+function inspectUploadFile(file){
+  if(!file) return {ok:false,error:"فایلی انتخاب نشده است."};
+  const name=String(file.name||"");
+  if(name.length>180) return {ok:false,error:"نام فایل بیش از حد طولانی است."};
+  if(BLOCKED_EXTENSIONS.test(name)) return {ok:false,error:"این نوع فایل برای امنیت سامانه مجاز نیست."};
+  if(file.size>MAX_UPLOAD_BYTES) return {ok:false,error:"حجم فایل نباید بیشتر از ۵ مگابایت باشد."};
+  if(!ALLOWED_IMAGE_TYPES.has(String(file.type||"").toLowerCase()))
+    return {ok:false,error:"فقط فایل‌های تصویری JPG، PNG، WEBP یا GIF مجاز هستند."};
+  return {ok:true};
+}
+
+async function verifyImageSignature(file){
+  const header = new Uint8Array(await file.slice(0,12).arrayBuffer());
+  const hex=Array.from(header,b=>b.toString(16).padStart(2,"0")).join("").toUpperCase();
+  const type=file.type.toLowerCase();
+  const signatures={
+    "image/jpeg":["FFD8FF"],
+    "image/png":["89504E470D0A1A0A"],
+    "image/gif":["47494638"],
+    "image/webp":["52494646"]
+  };
+  return (signatures[type]||[]).some(sig=>hex.startsWith(sig));
+}
+
+async function safeImageFile(file){
+  const check=inspectUploadFile(file);
+  if(!check.ok) return check;
+  try{
+    if(!(await verifyImageSignature(file)))
+      return {ok:false,error:"محتوای فایل با نوع اعلام‌شده تصویر مطابقت ندارد."};
+  }catch{
+    return {ok:false,error:"امکان بررسی امنیتی فایل وجود ندارد."};
+  }
+  return {ok:true};
+}
+
+/* جلوگیری از اجرای داده‌های مشکوک در نام/مسیر فایل */
+document.addEventListener("paste",e=>{
+  const t=e.target;
+  if(t && t.tagName==="INPUT" && t.type==="file") e.preventDefault();
+});
+
+/* پاک‌سازی فایل انتخاب‌شده در صورت رد شدن بررسی امنیتی */
+async function secureBotImageSelection(e){
+  const file=e.target.files && e.target.files[0];
+  if(!file) return;
+  const result=await safeImageFile(file);
+  if(!result.ok){
+    alert("🛡️ فایل مسدود شد:\n"+result.error);
+    e.target.value="";
+    removeBotImage();
+    return;
+  }
+  previewBotImage(e);
+}
+
+/* ===== Interactive grade picker ===== */
+
+function initGradePicker(){
+  const select=document.getElementById("studentGrade");
+  if(!select || document.querySelector(".grade-picker")) return;
+  const group=select.closest(".input-group");
+  if(!group) return;
+  const wrap=document.createElement("div");
+  wrap.className="grade-picker";
+  const trigger=document.createElement("button");
+  trigger.type="button";
+  trigger.className="grade-trigger";
+  trigger.innerHTML='<span class="grade-value">انتخاب پایه تحصیلی</span><span class="grade-arrow">⌄</span>';
+  const menu=document.createElement("div");
+  menu.className="grade-menu";
+  Array.from(select.options).forEach((opt,index)=>{
+    if(!opt.value) return;
+    const item=document.createElement("div");
+    item.className="grade-option";
+    item.dataset.value=opt.value;
+    item.innerHTML='<span><span class="grade-school-icon">✦</span>'+opt.textContent+'</span>';
+    item.addEventListener("click",()=>{
+      select.value=opt.value;
+      trigger.querySelector(".grade-value").textContent=opt.textContent;
+      menu.querySelectorAll(".grade-option").forEach(x=>x.classList.remove("selected"));
+      item.classList.add("selected");
+      wrap.classList.remove("open");
+      select.dispatchEvent(new Event("change",{bubbles:true}));
+    });
+    menu.appendChild(item);
+  });
+  trigger.addEventListener("click",()=>wrap.classList.toggle("open"));
+  wrap.appendChild(trigger);wrap.appendChild(menu);
+  group.appendChild(wrap);
+  document.addEventListener("click",e=>{if(!wrap.contains(e.target))wrap.classList.remove("open")});
+}
+
+document.addEventListener("dragover",e=>e.preventDefault());
+document.addEventListener("drop",e=>e.preventDefault());
+window.addEventListener("beforeunload",clearSensitiveFields);
+
+
+const secureImageInput=$("botImageInput");
+if(secureImageInput) secureImageInput.onchange=secureBotImageSelection;
+initGradePicker();
+
+// اتصال قطعی دکمه‌های خروج/حذف حساب با شناسه مشخص؛ سازگار با موبایل
+const logoutButton=$("logoutBtn");
+const deleteAccountButton=$("deleteAccountBtn");
+if(logoutButton){logoutButton.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();void logout();});}
+if(deleteAccountButton){deleteAccountButton.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();void confirmDeleteAccount();});}
+
+// با بستن فایل، نشست/اطلاعات حساب پاک نمی‌شود. در بازشدن دوباره فقط
+// صفحه ورود نمایش داده می‌شود و کاربر با رمز خودش وارد همان حساب می‌شود.
+// فقط «خروج» یا «حذف حساب» باید نشست را پاک کند.
+currentUser=null;
+void prepareEntry().catch(()=>showRegisterChoices());
+setTimeout(()=>{ if(currentUser) restoreBotMemory(); },200);
+
+setInterval(()=>{
+  if(typeof botImageData==="string" && botImageData.length>7_000_000) removeBotImage();
+},30000);
+
+function closeLocalSecurityNotice(){
+  const el=$("localSecurityNotice");
+  if(el) el.classList.add("hidden");
+  try{localStorage.setItem("edubotLocalNoticeSeen","1")}catch{}
+}
+
+</script>
+</body>
+</html>
