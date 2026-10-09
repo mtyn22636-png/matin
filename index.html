@@ -543,24 +543,64 @@ body::after{
 @supports not (height:100dvh){#loginCodeReminderModal{height:100vh!important;}}
 /* Mobile: keep the warning fully reachable, start at the top, and allow vertical scrolling. */
 @media (max-width:600px){
+  /* Mobile warning: make the overlay itself a real scroll container and anchor content at top. */
   #loginCodeReminderModal{
-    height:100vh!important;height:100dvh!important;max-height:none!important;
-    display:flex!important;align-items:flex-start!important;justify-content:center!important;
+    position:fixed!important;inset:0!important;top:0!important;right:0!important;bottom:0!important;left:0!important;
+    width:100%!important;height:100%!important;height:100dvh!important;max-height:none!important;min-height:0!important;
+    display:block!important;align-items:initial!important;justify-content:initial!important;
     overflow-x:hidden!important;overflow-y:auto!important;
-    padding:calc(12px + env(safe-area-inset-top, 0px)) 12px calc(16px + env(safe-area-inset-bottom, 0px))!important;
+    padding:calc(12px + env(safe-area-inset-top, 0px)) 12px calc(20px + env(safe-area-inset-bottom, 0px))!important;
     box-sizing:border-box!important;touch-action:pan-y!important;
     -webkit-overflow-scrolling:touch!important;overscroll-behavior-y:contain!important;
   }
   #loginCodeReminderModal .login-code-reminder-card{
-    width:100%!important;max-width:470px!important;flex:0 0 auto!important;
-    max-height:none!important;overflow:visible!important;margin:0 auto!important;
+    display:block!important;width:100%!important;max-width:470px!important;min-height:0!important;flex:none!important;
+    max-height:none!important;overflow:visible!important;margin:0 auto 12px!important;
     padding:22px 17px 18px!important;border-radius:23px!important;
-    animation:none!important;
+    animation:none!important;transform:none!important;
   }
   #loginCodeReminderModal .login-code-reminder-actions{grid-template-columns:1fr!important;}
   #loginCodeReminderModal .login-code-reminder-actions button{min-height:48px!important;}
 }
+
+/* Final mobile fix for the FIRST-RUN local storage warning modal */
+#localSecurityNotice{overflow-y:auto!important;overflow-x:hidden!important;-webkit-overflow-scrolling:touch!important;touch-action:pan-y!important;overscroll-behavior-y:contain!important;box-sizing:border-box!important;}
+#localSecurityNotice .local-notice-card{box-sizing:border-box!important;max-height:none!important;overflow:visible!important;flex:0 0 auto!important;}
+@media(max-width:600px){
+  #localSecurityNotice{position:fixed!important;inset:0!important;width:100%!important;height:100%!important;height:100dvh!important;display:block!important;padding:calc(12px + env(safe-area-inset-top,0px)) 12px calc(20px + env(safe-area-inset-bottom,0px))!important;}
+  #localSecurityNotice .local-notice-card{width:100%!important;max-width:560px!important;margin:0 auto 12px!important;padding:22px 17px!important;border-radius:22px!important;animation:none!important;transform:none!important;}
+  #localSecurityNotice .local-notice-card h2{font-size:21px!important;line-height:1.6!important;}
+  #localSecurityNotice .local-notice-card p{font-size:13px!important;line-height:1.9!important;}
+}
 </style>
+
+<style id="mobile-warning-scroll-final-fix">
+/* Mobile warning: make the overlay itself scrollable, not only the card */
+#loginCodeReminderModal{
+  position:fixed!important; inset:0!important; top:0!important; left:0!important; right:0!important; bottom:0!important;
+  width:100%!important; height:100%!important; height:100dvh!important; max-height:100dvh!important;
+  display:flex!important; flex-direction:column!important; align-items:center!important; justify-content:flex-start!important;
+  overflow-x:hidden!important; overflow-y:auto!important;
+  -webkit-overflow-scrolling:touch!important; overscroll-behavior-y:contain!important;
+  touch-action:pan-y!important; padding:12px 12px 24px!important; box-sizing:border-box!important;
+}
+#loginCodeReminderModal .login-code-reminder-card{
+  flex:0 0 auto!important; width:min(100%,470px)!important; max-width:470px!important;
+  max-height:none!important; height:auto!important; overflow:visible!important;
+  margin:0 auto 12px!important; transform:none; touch-action:pan-y!important;
+}
+#loginCodeReminderModal .login-code-reminder-card::before{pointer-events:none!important}
+@media(max-width:480px){
+  #loginCodeReminderModal{padding:8px 10px 20px!important; align-items:stretch!important}
+  #loginCodeReminderModal .login-code-reminder-card{width:100%!important; max-width:none!important; margin:0 auto 12px!important; padding:18px 15px 16px!important}
+  #loginCodeReminderModal #loginCodeReminderTitle{font-size:18px!important}
+  #loginCodeReminderModal #loginCodeReminderText{font-size:12.5px!important}
+  #loginCodeReminderModal .login-code-reminder-warning{font-size:12px!important; line-height:1.85!important}
+  #loginCodeReminderModal .login-code-reminder-actions{grid-template-columns:1fr!important}
+  #loginCodeReminderModal .login-code-reminder-actions button{min-height:46px!important}
+}
+</style>
+
 </head>
 <body>
 
