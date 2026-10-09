@@ -541,6 +541,25 @@ body::after{
 #loginCodeReminderModal.hidden{display:none!important;}
 #loginCodeReminderModal .login-code-reminder-card{position:relative!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;margin:0 auto!important;transform:none!important;}
 @supports not (height:100dvh){#loginCodeReminderModal{height:100vh!important;}}
+/* Mobile: keep the warning fully reachable, start at the top, and allow vertical scrolling. */
+@media (max-width:600px){
+  #loginCodeReminderModal{
+    height:100vh!important;height:100dvh!important;max-height:none!important;
+    display:flex!important;align-items:flex-start!important;justify-content:center!important;
+    overflow-x:hidden!important;overflow-y:auto!important;
+    padding:calc(12px + env(safe-area-inset-top, 0px)) 12px calc(16px + env(safe-area-inset-bottom, 0px))!important;
+    box-sizing:border-box!important;touch-action:pan-y!important;
+    -webkit-overflow-scrolling:touch!important;overscroll-behavior-y:contain!important;
+  }
+  #loginCodeReminderModal .login-code-reminder-card{
+    width:100%!important;max-width:470px!important;flex:0 0 auto!important;
+    max-height:none!important;overflow:visible!important;margin:0 auto!important;
+    padding:22px 17px 18px!important;border-radius:23px!important;
+    animation:none!important;
+  }
+  #loginCodeReminderModal .login-code-reminder-actions{grid-template-columns:1fr!important;}
+  #loginCodeReminderModal .login-code-reminder-actions button{min-height:48px!important;}
+}
 </style>
 </head>
 <body>
