@@ -1215,9 +1215,20 @@ function getLastAccount(){
   return local?.id?local:null;
 }
 function showRegisterChoices(){
-  $("returnLoginBox").classList.add("hidden");
-  $("previousAccountBox")?.classList.add("hidden");
-  $("accountTypes").style.display="grid";
+  // نمایش فقط صفحه انتخاب نقش؛ فرم‌های ثبت‌نام نباید پس از حذف حساب باقی بمانند.
+  const accountTypes=$("accountTypes");
+  const teacherRegister=$("teacherRegister");
+  const studentRegister=$("studentRegister");
+  const returnLoginBox=$("returnLoginBox");
+  const previousAccountBox=$("previousAccountBox");
+  if(returnLoginBox)returnLoginBox.classList.add("hidden");
+  if(previousAccountBox)previousAccountBox.classList.add("hidden");
+  if(accountTypes)accountTypes.style.display="grid";
+  if(teacherRegister)teacherRegister.classList.remove("active");
+  if(studentRegister)studentRegister.classList.remove("active");
+  // پاک‌کردن فرم‌ها جلوی باقی‌ماندن اطلاعات قبلی در صفحه را می‌گیرد.
+  [$("teacherRegistrationForm"),$("studentRegistrationForm")].forEach(form=>{if(form)form.reset()});
+  clearSensitiveFields();
 }
 async function loginExistingUser(){
   const identifier=normalizeDigits($("returnIdentifier").value).trim(),pw=getSecretValue("returnPassword"),err=$("returnLoginError");
@@ -1506,7 +1517,7 @@ async function resetAppToLoginScreen(){
   currentUser=null; classes=[]; homework=[];
   const app=$("app"),login=$("loginPage");
   if(app) app.style.display="none";
-  if(login) login.style.display="block";
+  if(login) login.style.display="flex";
   try{clearSensitiveFields()}catch{}
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   // حساب قبلی باید روی همان دستگاه حفظ شود؛ از بکاپ کامل استفاده می‌کنیم.
